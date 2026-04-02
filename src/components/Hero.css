@@ -1,0 +1,232 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 0;
+  overflow: hidden;
+  background-color: var(--bg-light);
+  display: flex;
+  align-items: flex-start;
+}
+
+.hero-bg-stripes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 100px,
+    rgba(0, 0, 0, 0.02) 100px,
+    rgba(0, 0, 0, 0.02) 200px
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--bg-white);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-dark-muted);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: var(--text-dark-muted);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: var(--bg-primary);
+  color: var(--bg-white);
+}
+
+.btn-primary:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+  background: var(--bg-white);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-light);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+/* Image Gallery Logic - Matching Image 1 */
+.hero-image-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 480px;
+  width: 100%;
+  position: relative;
+  margin-top: 1rem;
+  perspective: 1000px;
+  overflow: visible;
+}
+
+.gallery-card {
+  position: absolute;
+  width: 280px;
+  height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 4px solid var(--bg-white);
+  cursor: pointer;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-card:hover {
+  z-index: 20 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Positioning and Rotations — hover MUST include translateX to prevent snap/glitch */
+.card-1 {
+  left: 50%;
+  transform: translateX(-210%) translateY(20px) rotate(-8deg);
+  z-index: 1;
+}
+
+.card-1:hover {
+  transform: translateX(-210%) translateY(-15px) scale(1.05) rotate(-2deg) !important;
+}
+
+.card-2 {
+  left: 50%;
+  transform: translateX(-120%) translateY(10px) rotate(-4deg);
+  z-index: 2;
+}
+
+.card-2:hover {
+  transform: translateX(-120%) translateY(-15px) scale(1.05) rotate(-1deg) !important;
+}
+
+.card-3.center-card {
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px) rotate(0deg);
+  z-index: 3;
+  width: 320px;
+  height: 420px;
+}
+
+.card-3:hover {
+  transform: translateX(-50%) translateY(-20px) scale(1.05) rotate(0deg) !important;
+}
+
+.card-4 {
+  left: 50%;
+  transform: translateX(20%) translateY(10px) rotate(4deg);
+  z-index: 2;
+}
+
+.card-4:hover {
+  transform: translateX(20%) translateY(-15px) scale(1.05) rotate(1deg) !important;
+}
+
+.card-5 {
+  left: 50%;
+  transform: translateX(110%) translateY(20px) rotate(8deg);
+  z-index: 1;
+}
+
+.card-5:hover {
+  transform: translateX(110%) translateY(-15px) scale(1.05) rotate(2deg) !important;
+}
+
+@media (max-width: 1200px) {
+  .hero-image-gallery {
+    transform: scale(0.8);
+    height: 420px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-image-gallery {
+    transform: scale(0.6);
+    height: 340px;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn {
+    width: 100%;
+  }
+  .hero-image-gallery {
+    display: none; /* Hide complex gallery on very small screens, or simplify it */
+  }
+}

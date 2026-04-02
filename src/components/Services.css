@@ -1,0 +1,212 @@
+.services {
+  background-color: var(--bg-primary); /* Dark theme for services like Image 0 */
+  color: var(--text-main);
+  overflow: hidden;
+  padding-bottom: 4rem;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(5px);
+}
+
+.shield-icon {
+  font-size: 1rem;
+}
+
+.services-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Horizontal Slider */
+.services-slider-container {
+  width: 100%;
+  padding-left: max(1.5rem, calc((100% - var(--max-width)) / 2 + 1.5rem));
+  margin-bottom: 3rem;
+}
+
+.services-slider {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 2rem;
+  padding-right: 1.5rem;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.services-slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.service-card {
+  position: relative;
+  min-width: 280px;
+  width: 280px;
+  height: 400px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  scroll-snap-align: start;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+.service-card-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s ease;
+}
+
+.service-card:hover .service-card-bg {
+  transform: scale(1.1);
+}
+
+.service-card-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,15,26,0) 0%,
+    rgba(10,15,26,0.3) 40%,
+    rgba(10,15,26,0.9) 100%
+  );
+}
+
+.service-number {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 32px;
+  height: 32px;
+  background-color: var(--bg-white);
+  color: var(--bg-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  z-index: 10;
+}
+
+.service-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  z-index: 10;
+}
+
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--bg-white);
+}
+
+.service-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Controls */
+.services-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.progress-bar {
+  flex-grow: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  margin-right: 2rem;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 30%; /* Dynamic, but static for now */
+  background: var(--text-muted);
+  border-radius: 2px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-white);
+  color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: var(--transition);
+}
+
+.nav-btn:hover {
+  background: var(--accent-yellow);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .services-slider-container {
+    padding-left: 1rem;
+  }
+  .service-card {
+    min-width: 240px;
+    width: 240px;
+    height: 340px;
+  }
+}
