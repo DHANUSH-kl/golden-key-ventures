@@ -31,15 +31,15 @@ export default function Projects() {
   return (
     <section id="projects" className="projects section-padding">
       <div className="container">
-        <div className="projects-header fade-in">
-          <div className="projects-badge">
+        <div className="projects-header">
+          <div className="projects-badge slide-up">
             <span className="home-icon">⌂</span> Exclusive Portfolio
           </div>
-          <h2 className="section-title">Our Recent Projects</h2>
-          <p className="projects-subtitle">
+          <h2 className="section-title slide-up delay-100">Our Recent Projects</h2>
+          <p className="projects-subtitle slide-up delay-200">
             Handpicked construction projects showcasing the finest structural achievements in Mysore&apos;s most prestigious locations.
           </p>
-          <button className="btn btn-dark view-all-btn">See all projects</button>
+          <button className="btn btn-dark view-all-btn slide-up delay-300">See all projects</button>
         </div>
 
         <div className="projects-grid slide-up delay-200">

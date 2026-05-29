@@ -49,7 +49,7 @@
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
   font-weight: 500;
   color: var(--text-dark);
   line-height: 1.1;
@@ -58,7 +58,7 @@
 }
 
 .hero-description {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
   color: var(--text-dark-muted);
   max-width: 700px;
   margin: 0 auto 3rem;
@@ -70,6 +70,7 @@
   justify-content: center;
   gap: 1rem;
   margin-bottom: 4rem;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -81,6 +82,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -106,7 +109,7 @@
   box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
 }
 
-/* Image Gallery Logic - Matching Image 1 */
+/* ===== IMAGE GALLERY ===== */
 .hero-image-gallery {
   display: flex;
   justify-content: center;
@@ -147,13 +150,12 @@
   transform: scale(1.1);
 }
 
-/* Positioning and Rotations — hover MUST include translateX to prevent snap/glitch */
+/* Card positions */
 .card-1 {
   left: 50%;
   transform: translateX(-210%) translateY(20px) rotate(-8deg);
   z-index: 1;
 }
-
 .card-1:hover {
   transform: translateX(-210%) translateY(-15px) scale(1.05) rotate(-2deg) !important;
 }
@@ -163,7 +165,6 @@
   transform: translateX(-120%) translateY(10px) rotate(-4deg);
   z-index: 2;
 }
-
 .card-2:hover {
   transform: translateX(-120%) translateY(-15px) scale(1.05) rotate(-1deg) !important;
 }
@@ -175,7 +176,6 @@
   width: 320px;
   height: 420px;
 }
-
 .card-3:hover {
   transform: translateX(-50%) translateY(-20px) scale(1.05) rotate(0deg) !important;
 }
@@ -185,7 +185,6 @@
   transform: translateX(20%) translateY(10px) rotate(4deg);
   z-index: 2;
 }
-
 .card-4:hover {
   transform: translateX(20%) translateY(-15px) scale(1.05) rotate(1deg) !important;
 }
@@ -195,11 +194,13 @@
   transform: translateX(110%) translateY(20px) rotate(8deg);
   z-index: 1;
 }
-
 .card-5:hover {
   transform: translateX(110%) translateY(-15px) scale(1.05) rotate(2deg) !important;
 }
 
+/* ===== RESPONSIVE ===== */
+
+/* Scale down on tablets (before stacking) */
 @media (max-width: 1200px) {
   .hero-image-gallery {
     transform: scale(0.8);
@@ -207,26 +208,168 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .hero {
+    padding-top: 90px;
+  }
+  .hero-image-gallery {
+    transform: scale(0.7);
+    height: 390px;
+  }
+}
+
+/* Tablet portrait — show fewer cards */
 @media (max-width: 900px) {
   .hero-image-gallery {
     transform: scale(0.6);
     height: 340px;
     margin-top: 0;
   }
+  /* On tablet, hide outermost cards */
+  .card-1, .card-5 {
+    display: none;
+  }
+  /* But on mobile (640px and below), show all 5 in fan layout */
+  @media (max-width: 640px) {
+    .card-1, .card-5 {
+      display: block;
+    }
+  }
 }
 
-@media (max-width: 600px) {
-  .hero-title {
-    font-size: 2.5rem;
+/* Mobile: keep same fan layout, scaled down */
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 80px;
+    min-height: auto;
+    padding-bottom: 0;
   }
+
+  .hero-content {
+    padding-bottom: 0;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  .hero-badge {
+    font-size: 0.8rem;
+    margin-bottom: 1.25rem;
+  }
+
   .hero-actions {
     flex-direction: column;
     width: 100%;
+    max-width: 320px;
+    margin: 0 auto 2.5rem;
+    gap: 0.75rem;
   }
+
   .btn {
     width: 100%;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
   }
+
+  /* Keep the fan/arc layout — just scale it down */
   .hero-image-gallery {
-    display: none; /* Hide complex gallery on very small screens, or simplify it */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 280px;
+    width: 100%;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    perspective: 800px;
+    overflow: visible;
+    transform: none;
+  }
+
+  /* Restore absolute positioning for fan layout */
+  .gallery-card {
+    position: absolute;
+    flex-shrink: unset;
+    width: 130px;
+    height: 180px;
+    border-radius: 12px;
+    border: 3px solid var(--bg-white);
+    scroll-snap-align: unset;
+  }
+
+  .card-1 {
+    left: 50%;
+    transform: translateX(-210%) translateY(20px) rotate(-8deg) !important;
+    z-index: 1;
+  }
+  .card-1:hover {
+    transform: translateX(-210%) translateY(-10px) scale(1.05) rotate(-2deg) !important;
+  }
+
+  .card-2 {
+    left: 50%;
+    transform: translateX(-120%) translateY(10px) rotate(-4deg) !important;
+    z-index: 2;
+  }
+  .card-2:hover {
+    transform: translateX(-120%) translateY(-10px) scale(1.05) rotate(-1deg) !important;
+  }
+
+  .card-3.center-card {
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px) rotate(0deg) !important;
+    z-index: 3;
+    width: 150px;
+    height: 200px;
+  }
+  .card-3:hover {
+    transform: translateX(-50%) translateY(-18px) scale(1.05) rotate(0deg) !important;
+  }
+
+  .card-4 {
+    left: 50%;
+    transform: translateX(20%) translateY(10px) rotate(4deg) !important;
+    z-index: 2;
+  }
+  .card-4:hover {
+    transform: translateX(20%) translateY(-10px) scale(1.05) rotate(1deg) !important;
+  }
+
+  .card-5 {
+    left: 50%;
+    transform: translateX(110%) translateY(20px) rotate(8deg) !important;
+    z-index: 1;
+  }
+  .card-5:hover {
+    transform: translateX(110%) translateY(-10px) scale(1.05) rotate(2deg) !important;
+  }
+}
+
+/* Extra small: very narrow phones */
+@media (max-width: 380px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-image-gallery {
+    height: 240px;
+  }
+
+  .gallery-card {
+    width: 110px;
+    height: 155px;
+  }
+
+  .card-3.center-card {
+    width: 128px;
+    height: 170px;
   }
 }

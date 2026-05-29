@@ -5,45 +5,70 @@ export default function Contact() {
     <section id="contact" className="contact section-padding">
       <div className="container">
         
-        <div className="contact-header fade-in">
-          <span className="section-subtitle">Contact Us</span>
-          <h2 className="section-title">Get In Touch</h2>
-          <p className="contact-subtitle">
-            Ready to start your next big project? Contact us today for a free consultation.
+        {/* Section Header */}
+        <div className="contact-header">
+          <span className="contact-badge slide-up">Contact Us</span>
+          <h2 className="section-title slide-up delay-100">Get In Touch</h2>
+          <p className="contact-subtitle slide-up delay-200">
+            Ready to start your next big project? Reach out today to schedule a free consultation with our team.
           </p>
         </div>
 
+        {/* Contact Grid */}
         <div className="contact-grid">
           
+          {/* Left Panel: Contact Information */}
           <div className="contact-info slide-up">
             <h3 className="info-title">Contact Information</h3>
-            <p className="info-desc">Fill out the form and our team will get back to you within 24 hours.</p>
+            <p className="info-desc">Have a question or looking to build? Send us a message and our engineering team will get back to you within 24 hours.</p>
             
             <div className="info-items">
+              
+              {/* Address Item */}
               <div className="info-item">
-                <span className="info-icon">📍</span>
+                <div className="info-icon-wrapper">
+                  <svg className="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
                 <div className="info-text">
                   <span className="info-label">Address</span>
                   <p>Near Bannur Area, Mysore, Karnataka</p>
                 </div>
               </div>
+
+              {/* Phone Item */}
               <div className="info-item">
-                <span className="info-icon">📞</span>
+                <div className="info-icon-wrapper">
+                  <svg className="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
                 <div className="info-text">
                   <span className="info-label">Phone</span>
-                  <p>+91 98765 43210</p>
+                  <p className="contact-link-text">+91 99004 47762</p>
                 </div>
               </div>
+
+              {/* Email Item */}
               <div className="info-item">
-                <span className="info-icon">✉️</span>
+                <div className="info-icon-wrapper">
+                  <svg className="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
                 <div className="info-text">
                   <span className="info-label">Email</span>
-                  <p>info@goldenkeyventures.com</p>
+                  <p className="contact-link-text">info@goldenkeyventures.com</p>
                 </div>
               </div>
+
             </div>
           </div>
 
+          {/* Right Panel: Callback Form */}
           <div className="contact-form-wrapper slide-up delay-200">
             <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
               <div className="form-group">
@@ -54,7 +79,7 @@ export default function Contact() {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="phone">Phone Number</label>
-                  <input type="tel" id="phone" placeholder="+91 90000 00000" required />
+                  <input type="tel" id="phone" placeholder="+91 99004 47762" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">Email Address</label>
@@ -64,7 +89,7 @@ export default function Contact() {
 
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea id="message" rows={4} placeholder="Tell us about your project..." required></textarea>
+                <textarea id="message" rows={4} placeholder="Describe your construction or renovation needs..." required></textarea>
               </div>
 
               <button className="btn btn-primary form-submit">Request a Callback</button>

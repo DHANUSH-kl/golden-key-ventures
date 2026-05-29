@@ -1,122 +1,567 @@
-.process {
-  background-color: var(--bg-light);
+/* Process Section Redesign (Premium Off-White & Dark Navy Theme) */
+.process-redesign {
+  background-color: #050b14; /* Deep dark navy background */
+  color: #ffffff;
+  padding: 6rem 0;
+  position: relative;
+  /* Removed overflow: hidden to allow sticky child positioning */
 }
 
 .process-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem; /* Reduced from 4rem to tighten layout spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.process-timeline {
-  position: relative;
-  max-width: 800px;
+.process-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ffffff; /* Clean off-white */
+  margin-bottom: 1.25rem; /* Reduced margin */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(10px);
+}
+
+.process-redesign .section-title {
+  color: #ffffff !important;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem; /* Tightened title bottom spacing */
+  letter-spacing: -0.02em;
+}
+
+.process-subtitle {
+  color: #8E9CB1; /* Subtle slate blue/gray */
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  max-width: 700px;
   margin: 0 auto;
-  padding: 2rem 0;
+  line-height: 1.6;
 }
 
-.process-timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  background-color: rgba(0,0,0,0.1);
-  transform: translateX(-50%);
-}
-
-.process-step {
+/* Split Layout */
+.process-split-container {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  gap: 5rem;
+  align-items: start;
   position: relative;
-  margin-bottom: 4rem;
-  width: 50%;
+  margin-top: 1.5rem; /* Tightened from 4rem to pull elements closer to header */
 }
 
-.process-step:last-child {
-  margin-bottom: 0;
-}
-
-.step-even {
-  left: 50%;
-  padding-left: 3rem;
-  text-align: left;
-}
-
-.step-odd {
-  left: 0;
-  padding-right: 3rem;
-  text-align: right;
-}
-
-.step-dot {
-  position: absolute;
-  top: 0;
-  width: 20px;
-  height: 20px;
-  background-color: var(--accent-yellow);
-  border-radius: 50%;
-  border: 4px solid var(--bg-white);
-  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+/* Left Panel: Sticky Showcase Visualizer */
+.process-visualizer-sticky {
+  position: sticky;
+  top: 130px; /* Offset below sticky navbar */
+  height: calc(100vh - 190px);
+  min-height: 480px;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
   z-index: 10;
 }
 
-.step-even .step-dot {
-  left: -10px;
+.process-visualizer-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 17, 34, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Clean white border */
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 
+              0 0 50px rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(10px);
 }
 
-.step-odd .step-dot {
-  right: -10px;
-}
-
-.step-number {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--bg-primary);
-  opacity: 0.1;
+/* Drafting technical sheet lines - subtle white/gray instead of yellow */
+.visualizer-grid-bg {
   position: absolute;
-  top: -20px;
-  line-height: 1;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 30px 30px;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.step-even .step-number {
-  left: 3rem;
+.visualizer-image-stack {
+  position: absolute;
+  top: 24px; left: 24px; right: 24px; bottom: 24px;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.step-odd .step-number {
-  right: 3rem;
+.visualizer-img-wrapper {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.05);
+  /* Slower image transition: 1.2s opacity, 1.8s transform scale for premium cinematic glide */
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.step-title {
-  font-size: 1.25rem;
+.visualizer-img-wrapper.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.visualizer-img-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 11, 20, 0.15) 0%,
+    rgba(5, 11, 20, 0.55) 100%
+  );
+}
+
+/* Floating HUD elements */
+.visualizer-phase-tag {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(5, 11, 20, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 2;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.step-desc {
-  color: var(--text-dark-muted);
+.phase-indicator-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  animation: pulseGlow 2.5s infinite; /* Slower pulse */
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.visualizer-tech-specs {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  right: 40px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.85rem 1.4rem;
+  background: rgba(5, 11, 20, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.spec-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.spec-value {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.spec-value.highlight {
+  color: #8FA9C4; /* Soft ice blue highlight */
+  text-shadow: 0 0 8px rgba(143, 169, 196, 0.3);
+}
+
+/* Right Panel: Interactive Step List */
+.process-steps-list {
+  position: relative;
+  padding-left: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* Flex gap between cards */
+}
+
+/* 
+   REPLACEMENT FOR LONG OVERFLOWING VERTICAL TIMELINE TRACK:
+   Instead of one long background track, we now place dynamic line segments 
+   directly inside the cards using pseudo-elements, connecting them dot-to-dot 
+   and stopping exactly at Card 5's dot marker.
+*/
+.process-steps-list-track {
+  display: none; /* Deactivated background track to prevent bottom overflow */
+}
+
+/* Step Card Styles */
+.process-step-card {
+  position: relative;
+  padding: 2rem 2.25rem; /* Reduced padding from 2.5rem for better visual density */
+  background: rgba(10, 17, 34, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  /* Slower, more organic ease-out curve for premium luxury feel */
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  overflow: hidden;
+  scroll-margin-top: 145px; /* Offset stops card exactly below floating navbar when scrolled to */
+}
+
+.process-step-card:hover {
+  background: rgba(10, 17, 34, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(8px);
+}
+
+/* Active Step Card - styled in Stat Card Off-White theme */
+.process-step-card.active {
+  background: #F4EFEA; /* Solid off-white background matching the Achievements section */
+  border-color: transparent;
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.5), 
+    0 0 30px rgba(255, 255, 255, 0.01);
+  transform: translateX(12px);
+}
+
+/* Card Timeline Bullet Indicator */
+.process-step-card::before {
+  content: '';
+  position: absolute;
+  left: calc(-3rem - 5px); /* Centered exactly on the 2px segment line */
+  top: 34px; /* Aligned with title line */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 3px solid #050b14;
+  z-index: 3;
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-step-card:hover::before {
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.1);
+}
+
+.process-step-card.active::before {
+  background-color: #ffffff;
+  box-shadow: 
+    0 0 0 5px rgba(255, 255, 255, 0.15), 
+    0 0 15px rgba(255, 255, 255, 0.5);
+  transform: scale(1.3);
+}
+
+/* 
+   Timeline connecting line segment.
+   Draws from this card's dot down to the next card's dot. 
+   Omitted on the last child so the timeline terminates perfectly.
+*/
+.process-step-card:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: calc(-3rem - 1px); /* Aligns perfectly under dot center */
+  top: 34px;
+  bottom: calc(-2.5rem - 34px); /* Extends through the 2.5rem card gap to next card dot at top:34px */
+  width: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.7s ease;
+}
+
+.process-step-card.active:not(:last-child)::after {
+  background: rgba(255, 255, 255, 0.25); /* Brightens line below active card */
+}
+
+/* Background Step Number Typography */
+.step-card-number {
+  position: absolute;
+  top: 0.75rem;
+  right: 1.5rem;
+  font-size: 7rem;
+  font-weight: 800;
+  line-height: 0.8;
+  font-family: inherit;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.02);
+  color: transparent;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.process-step-card.active .step-card-number {
+  -webkit-text-stroke: 1px rgba(5, 11, 20, 0.04);
+  color: rgba(5, 11, 20, 0.002);
+}
+
+/* Card Header */
+.step-card-header {
+  position: relative;
+  z-index: 1;
+}
+
+.step-card-phase {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8E9CB1; /* Inactive tag color */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem; /* Reduced header spacing */
+  display: block;
+}
+
+.process-step-card.active .step-card-phase {
+  color: #543D2B; /* Warm dark brown phase label on off-white active background */
+}
+
+.step-card-title {
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  color: #ffffff;
+  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother title color transition */
+}
+
+.process-step-card.active .step-card-title {
+  color: #050b14; /* Dark navy title color on active card */
+}
+
+/* Card Description */
+.step-card-desc {
+  position: relative;
+  z-index: 1;
+  font-size: 0.95rem;
+  color: #8E9CB1; /* Slate blue-gray */
   line-height: 1.6;
-  position: relative;
-  z-index: 2;
+  margin-top: 0.5rem; /* Reduced description margin */
+  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother description color transition */
 }
 
-@media (max-width: 768px) {
-  .process-timeline::before {
-    left: 20px;
+.process-step-card.active .step-card-desc {
+  color: #4A5568; /* Clean dark-gray description on active card */
+}
+
+/* Hidden by default on desktop */
+.step-card-mobile-image {
+  display: none;
+}
+
+/* Deliverables Accordion List */
+.step-card-deliverables {
+  position: relative;
+  z-index: 1;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  /* Smoother, slower vertical accordion ease */
+  transition: max-height 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              margin-top 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-step-card.active .step-card-deliverables {
+  max-height: 250px;
+  opacity: 1;
+  margin-top: 1.25rem; /* Balanced gap inside active card */
+}
+
+.deliverables-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.6rem; /* Slightly reduced deliverables title gap */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-step-card.active .deliverables-title {
+  color: #543D2B; /* Dark deliverables title on active card */
+}
+
+.deliverables-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* Balanced gap between deliverables tags */
+}
+
+.deliverable-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem; /* Slightly tighter tags */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother tag transition */
+}
+
+.deliverable-tag:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.process-step-card.active .deliverable-tag {
+  background: rgba(5, 11, 20, 0.04); /* Subtle dark container tag on active cream */
+  border-color: rgba(5, 11, 20, 0.08);
+  color: #050b14;
+}
+
+.deliverable-check-icon {
+  width: 12px;
+  height: 12px;
+  color: #ffffff;
+  flex-shrink: 0;
+  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-step-card.active .deliverable-check-icon {
+  color: #050b14; /* Deep dark navy check icon on active card */
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .process-split-container {
+    gap: 3rem;
   }
-  .process-step {
+}
+
+@media (max-width: 992px) {
+  .process-split-container {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+  
+  .process-visualizer-sticky {
+    display: none;
+  }
+  
+  .process-steps-list {
+    padding-left: 3rem;
+    gap: 1.5rem; /* Mobile gap between cards */
+  }
+  
+  .process-step-card::before {
+    left: calc(-2rem - 5px); /* Aligns to 1rem list track */
+    top: 24px;
+  }
+  
+  .process-step-card:not(:last-child)::after {
+    left: calc(-2rem - 1px);
+    top: 24px;
+    bottom: calc(-1.5rem - 24px); /* Mobile line adjustment based on 1.5rem list gap */
+  }
+  
+  .process-step-card {
+    padding: 2rem;
+    scroll-margin-top: 100px; /* Offset adjustment on mobile */
+  }
+  
+  .process-step-card:hover,
+  .process-step-card.active {
+    transform: none; /* Prevent card sliding out on touch screens */
+  }
+  
+  .step-card-number {
+    font-size: 5rem;
+  }
+  
+  /* Inline Image for Mobile Viewports */
+  .step-card-mobile-image {
+    display: block;
     width: 100%;
-    left: 0 !important;
-    padding-left: 50px !important;
-    padding-right: 0 !important;
-    text-align: left !important;
+    height: 220px;
+    border-radius: 12px;
+    margin-top: 1.25rem;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
-  .step-dot {
-    left: 10px !important;
+  
+  .step-card-mobile-image .visualizer-img-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(
+      to bottom, 
+      transparent 30%, 
+      rgba(5, 11, 20, 0.7) 100%
+    );
   }
-  .step-even .step-number, .step-odd .step-number {
-    left: 50px;
-    right: auto;
+}
+
+@media (max-width: 576px) {
+  .process-steps-list {
+    padding-left: 2rem;
+  }
+  
+  .process-step-card::before {
+    left: calc(-1.5rem - 5px);
+  }
+  
+  .process-step-card:not(:last-child)::after {
+    left: calc(-1.5rem - 1px);
+  }
+  
+  .process-step-card {
+    padding: 1.5rem;
+  }
+  
+  .step-card-number {
+    font-size: 3.5rem;
+    right: 1rem;
+  }
+  
+  .step-card-mobile-image {
+    height: 160px;
+  }
+  
+  .deliverables-grid {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  
+  .deliverable-tag {
+    width: 100%;
   }
 }

@@ -39,6 +39,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
 * {
@@ -75,10 +76,14 @@ img {
   padding: 0 1.5rem;
 }
 
+.section-padding {
+  padding: var(--section-padding);
+}
+
 /* Base Animations (Controlled by IntersectionObserver) */
 .fade-in {
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-in.visible {
@@ -87,8 +92,9 @@ img {
 
 .slide-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(15px); /* Reduced from 30px for a clean, subtle glide */
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .slide-up.visible {
@@ -100,3 +106,31 @@ img {
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }
 .delay-400 { transition-delay: 400ms; }
+
+/* ===== GLOBAL RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  :root {
+    --section-padding: 5rem 1.5rem;
+  }
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 4rem 1.25rem;
+  }
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-padding: 3rem 1rem;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+}
