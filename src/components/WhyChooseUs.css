@@ -1,143 +1,261 @@
-/* Achievements Section (Dark theme) */
-.achievements {
-  background-color: var(--bg-primary); /* Dark primary theme background */
-  color: var(--text-main);
-  padding: 6rem 0;
+/* Achievements Section (Light theme) */
+.achievements-new {
+  background-color: #f5f5f7; /* Clean, very light gray background matching Image 2 */
+  color: var(--text-dark);
+  padding: 6rem 0 7rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.achievements-header {
-  text-align: center;
-  margin-bottom: 4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.achievements-header-new {
+  max-width: 900px;
+  margin-bottom: 5rem;
 }
 
-.achievements-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.25rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--accent-yellow);
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  backdrop-filter: blur(10px);
-}
-
-.achievements-subtitle {
-  color: var(--text-muted);
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
-  max-width: 750px;
-  margin: 0 auto;
-  line-height: 1.6;
+.achievements-title-new {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
 }
 
 /* Grid Layout */
-.achievements-grid {
+.achievements-grid-new {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 2rem;
-}
-
-/* Base Card Styling */
-.achievement-card {
+  grid-template-columns: repeat(4, 1fr);
   position: relative;
-  height: 290px;
-  border-radius: 32px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 4rem;
 }
 
-.achievement-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
-}
-
-/* Stat Cards (Beige background, dark text) */
-.stat-card {
-  background-color: #F4EFEA;
-  color: #382A1E;
-  padding: 2.25rem;
+.achievement-col-new {
+  position: relative;
+  padding: 0 1.5rem 0.5rem 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-/* Row Spans */
-.achievements-grid .achievement-card:nth-child(1),
-.achievements-grid .achievement-card:nth-child(2),
-.achievements-grid .achievement-card:nth-child(3),
-.achievements-grid .achievement-card:nth-child(4) {
-  grid-column: span 3;
+/* Align first column text left and strip left padding, others keep standard */
+.achievement-col-new:first-child {
+  padding-left: 0;
+}
+.achievement-col-new:last-child {
+  padding-right: 0;
 }
 
-.achievements-grid .achievement-card:nth-child(5),
-.achievements-grid .achievement-card:nth-child(6) {
-  grid-column: span 6;
-}
-
+/* Stat numbers and text inside column */
 .achievement-stat-number {
-  font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+  font-size: clamp(2.5rem, 5.2vw, 4.5rem); /* Extra large numbers like in Image 2 */
   font-weight: 700;
-  line-height: 1;
-  color: #382A1E;
-  letter-spacing: -0.03em;
-}
-
-.achievement-divider {
-  height: 1px;
-  background-color: rgba(56, 42, 30, 0.15);
-  margin: 1.25rem 0;
-  width: 100%;
+  line-height: 1.1;
+  color: #ffb800; /* Warm gold/yellow from screenshot */
+  letter-spacing: -0.04em;
+  margin-bottom: 0.75rem;
 }
 
 .achievement-stat-title {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  color: #382A1E;
+  color: var(--text-dark);
   margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
 
 .achievement-stat-desc {
   font-size: 0.9rem;
-  color: #705E51;
+  color: var(--text-dark-muted);
   line-height: 1.5;
   margin: 0;
 }
 
-/* Image Cards */
-.image-card {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Hide line and marker elements by default (e.g. mobile/tablet) */
+.blueprint-line-v,
+.blueprint-line-h-bottom,
+.crosshair-marker {
+  display: none;
 }
 
-.achievement-card-img {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+/* Desktop Staggered Grid & Blueprint Lines Styling */
+@media (min-width: 1024px) {
+  .achievements-grid-new {
+    padding-bottom: 60px; /* Space for translated even columns */
+  }
+
+  .achievement-col-new.col-even {
+    transform: translateY(60px); /* Vertical stagger shift */
+  }
+
+  /* Vertical lines on the right of columns, adjusted for staggering */
+  .achievement-col-new.col-odd .blueprint-line-v {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: -60px; /* Stretches down to align with bottom of even column */
+    width: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    z-index: 1;
+  }
+
+  .achievement-col-new.col-even .blueprint-line-v {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: -60px; /* Stretches up to align with top of odd column */
+    bottom: 0;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    z-index: 1;
+  }
+
+  /* Horizontal bottom line for even columns */
+  .blueprint-line-h-bottom {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    z-index: 1;
+  }
+
+  /* Crosshair Markers (+) */
+  .crosshair-marker {
+    display: block;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    z-index: 2;
+  }
+
+  .crosshair-marker::before,
+  .crosshair-marker::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.16);
+  }
+
+  .crosshair-marker::before {
+    top: 5px;
+    left: 0;
+    width: 12px;
+    height: 1px;
+  }
+
+  .crosshair-marker::after {
+    left: 5px;
+    top: 0;
+    width: 1px;
+    height: 12px;
+  }
+
+  .crosshair-left-bottom {
+    left: 0;
+    bottom: 0;
+    transform: translate(-6px, 6px); /* Center marker on left-bottom corner */
+  }
+
+  .crosshair-right-bottom {
+    right: 0;
+    bottom: 0;
+    transform: translate(6px, 6px); /* Center marker on right-bottom corner */
+  }
 }
 
-.achievement-card:hover .achievement-card-img {
-  transform: scale(1.06);
+/* Call to Action Schedule Consultation Button */
+.achievements-cta-new {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem; /* Spacing below the staggered columns */
 }
 
-.achievement-image-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(5, 11, 20, 0.05) 0%,
-    rgba(5, 11, 20, 0.25) 100%
-  );
-  z-index: 1;
+.schedule-consultation-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--bg-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 50px;
+  padding: 0.6rem 0.6rem 0.6rem 2rem;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.schedule-consultation-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.schedule-consultation-btn .arrow-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #ffb800; /* Yellow circle background */
+  color: #000000; /* Black arrow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.schedule-consultation-btn:hover .arrow-circle {
+  transform: translate(2px, 0);
+  background-color: #e5a200; /* Darker yellow on hover */
+}
+
+/* Tablet adjustments */
+@media (max-width: 1023px) {
+  .achievements-new {
+    padding: 5rem 0;
+  }
+  .achievements-grid-new {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2rem;
+    padding-bottom: 0;
+  }
+  .achievement-col-new {
+    padding: 0 1rem;
+  }
+  .achievement-col-new:first-child,
+  .achievement-col-new:nth-child(3) {
+    padding-left: 0;
+  }
+  .achievement-col-new:nth-child(2),
+  .achievement-col-new:last-child {
+    padding-right: 0;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .achievements-new {
+    padding: 4rem 0;
+  }
+  .achievements-header-new {
+    margin-bottom: 3rem;
+  }
+  .achievements-grid-new {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: 0;
+  }
+  .achievement-col-new {
+    padding: 0 !important;
+  }
+  .schedule-consultation-btn {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.6rem 0.6rem 0.6rem 1.5rem;
+  }
 }
 
 

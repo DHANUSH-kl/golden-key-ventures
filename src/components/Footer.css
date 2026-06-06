@@ -1,8 +1,8 @@
 .footer {
-  background-color: var(--bg-secondary);
-  color: var(--text-main);
+  background-color: #ffffff;
+  color: var(--text-dark);
   padding: 5rem 0 2rem;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .footer-grid {
@@ -15,14 +15,13 @@
 .footer-logo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--bg-white);
-  letter-spacing: -0.5px;
+  color: var(--text-dark);
   display: inline-block;
   margin-bottom: 1.5rem;
 }
 
 .footer-desc {
-  color: var(--text-muted);
+  color: var(--text-dark-muted);
   line-height: 1.6;
   margin-bottom: 2rem;
   max-width: 400px;
@@ -39,7 +38,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.05);
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--text-dark);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,8 +50,9 @@
 }
 
 .social-links a:hover {
-  background: var(--accent-yellow);
-  color: var(--bg-primary);
+  background: #ffb800; /* Yellow background hover */
+  color: #ffffff; /* White social icon on hover */
+  border-color: #ffb800;
   transform: translateY(-3px);
 }
 
@@ -58,7 +60,7 @@
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: var(--bg-white);
+  color: var(--text-dark);
 }
 
 .footer-links {
@@ -68,23 +70,23 @@
 }
 
 .footer-links a {
-  color: var(--text-muted);
+  color: var(--text-dark-muted);
   transition: var(--transition);
   font-size: clamp(0.875rem, 1.5vw, 1rem);
 }
 
 .footer-links a:hover {
-  color: var(--accent-yellow);
+  color: #ffb800;
   padding-left: 5px;
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   padding-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--text-muted);
+  color: var(--text-dark-muted);
   font-size: 0.875rem;
   gap: 1rem;
   flex-wrap: wrap;
@@ -97,7 +99,7 @@
 }
 
 .footer-bottom-links a:hover {
-  color: var(--bg-white);
+  color: var(--text-dark);
 }
 
 /* WhatsApp Float */

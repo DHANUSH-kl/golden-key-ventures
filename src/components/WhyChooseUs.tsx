@@ -4,42 +4,32 @@ import './WhyChooseUs.css';
 
 const stats = [
   {
-    type: 'stat',
-    target: 350,
+    target: 2020,
+    suffix: '',
+    title: 'Year of establishment',
+    desc: 'Six years of commercial excellence',
+  },
+  {
+    target: 25,
     suffix: '+',
-    title: 'Projects Completed',
-    desc: 'Successfully delivered diverse residential, commercial, and industrial projects.',
+    title: 'Projects delivered',
+    desc: 'Trusted by leading organizations',
   },
   {
-    type: 'image',
-    image: '/media__1775044940985.png',
-    alt: 'Client Trust shaking hands',
-  },
-  {
-    type: 'stat',
     target: 20,
     suffix: '+',
-    title: 'Years of Experience',
-    desc: 'Decades of expertise in the construction and engineering industry.',
+    title: 'Active sites',
+    desc: 'Transforming spaces daily',
   },
   {
-    type: 'image',
-    image: '/media__1775044970285.png',
-    alt: 'Team Collaboration blueprints',
-  },
-  {
-    type: 'stat',
-    target: 100,
-    suffix: '%',
-    title: 'Safety Record',
-    desc: 'Commitment to uncompromising safety standards across all construction sites.',
-  },
-  {
-    type: 'image',
-    image: '/media__1775044900579.png',
-    alt: 'Engineering 3D conveyor model layout',
+    target: 19,
+    suffix: 'L+',
+    title: 'Sq.Ft. Constructed',
+    desc: 'Across commercial sectors',
   }
 ];
+
+
 
 const testimonials = [
   {
@@ -71,30 +61,35 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
   const hasAnimated = useRef(false);
 
   useEffect(() => {
+    let animationFrameId: number;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
           
-          let start = 0;
-          const end = target;
-          if (start === end) return;
+          let startTime: number | null = null;
+          const duration = 2000; // 2 seconds for a premium, ultra-smooth count-up
 
-          // Calculate a duration based on target value, but keep it around 1.5s max
-          const totalDuration = 1500;
-          const stepTime = Math.max(Math.floor(totalDuration / end), 12);
-          
-          const timer = setInterval(() => {
-            start += Math.ceil(end / (totalDuration / stepTime));
-            if (start >= end) {
-              setCount(end);
-              clearInterval(timer);
+          const animate = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function: Cubic Ease Out (starts fast, slows down smoothly)
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            
+            const currentCount = Math.floor(easeProgress * target);
+            setCount(currentCount);
+
+            if (progress < 1) {
+              animationFrameId = requestAnimationFrame(animate);
             } else {
-              setCount(start);
+              setCount(target);
             }
-          }, stepTime);
+          };
 
-          return () => clearInterval(timer);
+          animationFrameId = requestAnimationFrame(animate);
         }
       },
       { threshold: 0.1 }
@@ -106,11 +101,15 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 
     return () => {
       observer.disconnect();
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, [target]);
 
   return <span ref={elementRef}>{count}{suffix}</span>;
 }
+
 
 export default function WhyChooseUs() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -126,48 +125,59 @@ export default function WhyChooseUs() {
   return (
     <>
       {/* Achievements Section */}
-      <section className="achievements section-padding">
+      <section className="achievements-new section-padding">
         <div className="container">
           
-          <div className="achievements-header fade-in">
-            <div className="achievements-badge">
-              Proven Success
-            </div>
-            <h2 className="section-title light">Our Impact and Achievements</h2>
-            <p className="achievements-subtitle">
-              Golden Key Ventures consistently delivers outstanding results, reflected in our growing client satisfaction and successful project completions.
-            </p>
+          <div className="achievements-header-new fade-in">
+            <h2 className="achievements-title-new">
+              Every project reflects our dedication to exceptional design, quality craftsmanship, and lasting value. The results speak through the spaces we create and the trust we build.
+            </h2>
           </div>
 
-          <div className="achievements-grid slide-up delay-100">
+          <div className="achievements-grid-new slide-up delay-100">
             {stats.map((item, index) => {
-              if (item.type === 'stat') {
-                return (
-                  <div className="achievement-card stat-card" key={index}>
+              const isEven = index % 2 === 1;
+              return (
+                <div className={`achievement-col-new ${isEven ? 'col-even' : 'col-odd'}`} key={index}>
+                  {/* Vertical blueprint divider line on the right of the column */}
+                  <div className="blueprint-line-v"></div>
+                  
+                  <div className="achievement-content-box">
                     <div className="achievement-stat-number">
-                      <AnimatedCounter target={item.target!} suffix={item.suffix!} />
+                      <AnimatedCounter target={item.target} suffix={item.suffix} />
                     </div>
-                    <div className="achievement-divider"></div>
                     <h3 className="achievement-stat-title">{item.title}</h3>
                     <p className="achievement-stat-desc">{item.desc}</p>
                   </div>
-                );
-              } else {
-                return (
-                  <div className="achievement-card image-card" key={index}>
-                    <div 
-                      className="achievement-card-img"
-                      style={{ backgroundImage: `url(${item.image})` }}
-                    ></div>
-                    <div className="achievement-image-overlay"></div>
-                  </div>
-                );
-              }
+
+                  {/* Even columns have bottom horizontal line and crosshairs */}
+                  {isEven && (
+                    <>
+                      <div className="blueprint-line-h-bottom"></div>
+                      <div className="crosshair-marker crosshair-left-bottom"></div>
+                      <div className="crosshair-marker crosshair-right-bottom"></div>
+                    </>
+                  )}
+                </div>
+              );
             })}
+          </div>
+
+          <div className="achievements-cta-new slide-up delay-200">
+            <a href="#contact" className="schedule-consultation-btn">
+              <span>Schedule Consultation</span>
+              <span className="arrow-circle">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </a>
           </div>
 
         </div>
       </section>
+
 
       {/* Testimonials Section */}
       <section className="testimonials section-padding" id="testimonials">

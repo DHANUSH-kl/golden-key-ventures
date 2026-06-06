@@ -1,15 +1,14 @@
-/* Process Section Redesign (Premium Off-White & Dark Navy Theme) */
+/* Process Section Redesign (Premium White & Yellow Theme) */
 .process-redesign {
-  background-color: #050b14; /* Deep dark navy background */
-  color: #ffffff;
+  background-color: #ffffff; /* Clean white background */
+  color: var(--text-dark);
   padding: 6rem 0;
   position: relative;
-  /* Removed overflow: hidden to allow sticky child positioning */
 }
 
 .process-header {
   text-align: center;
-  margin-bottom: 2.5rem; /* Reduced from 4rem to tighten layout spacing */
+  margin-bottom: 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,29 +19,28 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #ffffff; /* Clean off-white */
-  margin-bottom: 1.25rem; /* Reduced margin */
+  color: #718096;
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  backdrop-filter: blur(10px);
 }
 
 .process-redesign .section-title {
-  color: #ffffff !important;
+  color: var(--text-dark) !important;
   font-size: clamp(2.25rem, 4vw, 3rem);
   font-weight: 600;
   line-height: 1.2;
-  margin-bottom: 1rem; /* Tightened title bottom spacing */
+  margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
 
 .process-subtitle {
-  color: #8E9CB1; /* Subtle slate blue/gray */
+  color: var(--text-dark-muted);
   font-size: clamp(0.95rem, 2vw, 1.1rem);
   max-width: 700px;
   margin: 0 auto;
@@ -75,22 +73,20 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: rgba(10, 17, 34, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.08); /* Clean white border */
+  background-color: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 
-              0 0 50px rgba(255, 255, 255, 0.01);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
 }
 
-/* Drafting technical sheet lines - subtle white/gray instead of yellow */
+/* Drafting technical sheet lines */
 .visualizer-grid-bg {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
   background-size: 30px 30px;
   z-index: 1;
   pointer-events: none;
@@ -142,24 +138,24 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.6rem 1.2rem;
-  background: rgba(5, 11, 20, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text-dark);
   letter-spacing: 0.05em;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
 .phase-indicator-dot {
   width: 6px;
   height: 6px;
-  background-color: #ffffff;
+  background-color: #ffb800;
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-  animation: pulseGlow 2.5s infinite; /* Slower pulse */
+  box-shadow: 0 0 8px rgba(255, 184, 0, 0.5);
+  animation: pulseGlow 2.5s infinite;
 }
 
 @keyframes pulseGlow {
@@ -177,14 +173,14 @@
   display: flex;
   justify-content: space-between;
   padding: 0.85rem 1.4rem;
-  background: rgba(5, 11, 20, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 12px;
   font-size: 0.7rem;
   font-family: monospace;
-  color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  color: #718096;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
 .spec-item {
@@ -196,17 +192,17 @@
 .spec-label {
   font-size: 0.55rem;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.35);
+  color: #a0aec0;
 }
 
 .spec-value {
-  color: #ffffff;
+  color: var(--text-dark);
   font-weight: 600;
 }
 
 .spec-value.highlight {
-  color: #8FA9C4; /* Soft ice blue highlight */
-  text-shadow: 0 0 8px rgba(143, 169, 196, 0.3);
+  color: #ffb800; /* Yellow highlight */
+  text-shadow: 0 0 8px rgba(255, 184, 0, 0.2);
 }
 
 /* Right Panel: Interactive Step List */
@@ -231,30 +227,35 @@
 /* Step Card Styles */
 .process-step-card {
   position: relative;
-  padding: 2rem 2.25rem; /* Reduced padding from 2.5rem for better visual density */
-  background: rgba(10, 17, 34, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 2rem 2.25rem;
+  background: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 20px;
-  /* Slower, more organic ease-out curve for premium luxury feel */
   transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   overflow: hidden;
-  scroll-margin-top: 145px; /* Offset stops card exactly below floating navbar when scrolled to */
+  scroll-margin-top: 145px;
 }
 
 .process-step-card:hover {
-  background: rgba(10, 17, 34, 0.6);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: #f1f3f5;
+  border-color: rgba(0, 0, 0, 0.08);
   transform: translateX(8px);
 }
 
-/* Active Step Card - styled in Stat Card Off-White theme */
+/* Active Step Card - styled in White & Yellow Theme */
 .process-step-card.active {
-  background: #F4EFEA; /* Solid off-white background matching the Achievements section */
-  border-color: transparent;
+  background: #ffb800;
+  border: 1px solid #ffb800;
   box-shadow: 
-    0 30px 60px -15px rgba(0, 0, 0, 0.5), 
-    0 0 30px rgba(255, 255, 255, 0.01);
+    0 20px 40px -10px rgba(255, 184, 0, 0.25), 
+    0 5px 15px rgba(255, 184, 0, 0.1);
+  transform: translateX(12px);
+}
+
+.process-step-card.active:hover {
+  background: #e6a500;
+  border-color: #e6a500;
   transform: translateX(12px);
 }
 
@@ -262,72 +263,48 @@
 .process-step-card::before {
   content: '';
   position: absolute;
-  left: calc(-3rem - 5px); /* Centered exactly on the 2px segment line */
-  top: 34px; /* Aligned with title line */
+  left: calc(-3rem - 5px);
+  top: 34px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.12);
-  border: 3px solid #050b14;
+  background-color: rgba(0, 0, 0, 0.08);
+  border: 3px solid #ffffff;
   z-index: 3;
   transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .process-step-card:hover::before {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #ffb800;
   transform: scale(1.1);
 }
 
 .process-step-card.active::before {
-  background-color: #ffffff;
+  background-color: #ffb800;
   box-shadow: 
-    0 0 0 5px rgba(255, 255, 255, 0.15), 
-    0 0 15px rgba(255, 255, 255, 0.5);
+    0 0 0 5px rgba(255, 184, 0, 0.15), 
+    0 0 15px rgba(255, 184, 0, 0.4);
   transform: scale(1.3);
 }
 
 /* 
    Timeline connecting line segment.
-   Draws from this card's dot down to the next card's dot. 
-   Omitted on the last child so the timeline terminates perfectly.
 */
 .process-step-card:not(:last-child)::after {
   content: '';
   position: absolute;
-  left: calc(-3rem - 1px); /* Aligns perfectly under dot center */
+  left: calc(-3rem - 1px);
   top: 34px;
-  bottom: calc(-2.5rem - 34px); /* Extends through the 2.5rem card gap to next card dot at top:34px */
+  bottom: calc(-2.5rem - 34px);
   width: 2px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.06);
   z-index: 1;
   pointer-events: none;
   transition: background 0.7s ease;
 }
 
 .process-step-card.active:not(:last-child)::after {
-  background: rgba(255, 255, 255, 0.25); /* Brightens line below active card */
-}
-
-/* Background Step Number Typography */
-.step-card-number {
-  position: absolute;
-  top: 0.75rem;
-  right: 1.5rem;
-  font-size: 7rem;
-  font-weight: 800;
-  line-height: 0.8;
-  font-family: inherit;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.02);
-  color: transparent;
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  user-select: none;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.process-step-card.active .step-card-number {
-  -webkit-text-stroke: 1px rgba(5, 11, 20, 0.04);
-  color: rgba(5, 11, 20, 0.002);
+  background: #ffb800; /* Yellow line connecting active steps */
 }
 
 /* Card Header */
@@ -339,26 +316,26 @@
 .step-card-phase {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #8E9CB1; /* Inactive tag color */
+  color: #718096;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 0.35rem; /* Reduced header spacing */
+  margin-bottom: 0.35rem;
   display: block;
 }
 
 .process-step-card.active .step-card-phase {
-  color: #543D2B; /* Warm dark brown phase label on off-white active background */
+  color: rgba(255, 255, 255, 0.85); /* High contrast white phase text */
 }
 
 .step-card-title {
   font-size: clamp(1.2rem, 2.2vw, 1.45rem);
   font-weight: 600;
-  color: #ffffff;
-  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother title color transition */
+  color: var(--text-dark);
+  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .process-step-card.active .step-card-title {
-  color: #050b14; /* Dark navy title color on active card */
+  color: #ffffff; /* High contrast white title text */
 }
 
 /* Card Description */
@@ -366,14 +343,14 @@
   position: relative;
   z-index: 1;
   font-size: 0.95rem;
-  color: #8E9CB1; /* Slate blue-gray */
+  color: #4a5568;
   line-height: 1.6;
-  margin-top: 0.5rem; /* Reduced description margin */
-  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother description color transition */
+  margin-top: 0.5rem;
+  transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .process-step-card.active .step-card-desc {
-  color: #4A5568; /* Clean dark-gray description on active card */
+  color: rgba(255, 255, 255, 0.9); /* High contrast white description text */
 }
 
 /* Hidden by default on desktop */
@@ -389,7 +366,6 @@
   opacity: 0;
   overflow: hidden;
   margin-top: 0;
-  /* Smoother, slower vertical accordion ease */
   transition: max-height 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
               opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
               margin-top 0.9s cubic-bezier(0.16, 1, 0.3, 1);
@@ -398,64 +374,70 @@
 .process-step-card.active .step-card-deliverables {
   max-height: 250px;
   opacity: 1;
-  margin-top: 1.25rem; /* Balanced gap inside active card */
+  margin-top: 1.25rem;
 }
 
 .deliverables-title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 0.6rem; /* Slightly reduced deliverables title gap */
+  color: #718096;
+  margin-bottom: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .process-step-card.active .deliverables-title {
-  color: #543D2B; /* Dark deliverables title on active card */
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .deliverables-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem; /* Balanced gap between deliverables tags */
+  gap: 0.5rem;
 }
 
 .deliverable-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.4rem 0.8rem; /* Slightly tighter tags */
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.4rem 0.8rem;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.75);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother tag transition */
+  color: #4a5568;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .deliverable-tag:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background: rgba(255, 184, 0, 0.05);
+  border-color: #ffb800;
+  color: #ffb800;
 }
 
 .process-step-card.active .deliverable-tag {
-  background: rgba(5, 11, 20, 0.04); /* Subtle dark container tag on active cream */
-  border-color: rgba(5, 11, 20, 0.08);
-  color: #050b14;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.process-step-card.active .deliverable-tag:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
 .deliverable-check-icon {
   width: 12px;
   height: 12px;
-  color: #ffffff;
+  color: #718096;
   flex-shrink: 0;
   transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .process-step-card.active .deliverable-check-icon {
-  color: #050b14; /* Deep dark navy check icon on active card */
+  color: #ffffff; /* White check mark inside yellow card */
 }
 
 /* ===== RESPONSIVE ===== */
@@ -501,10 +483,6 @@
     transform: none; /* Prevent card sliding out on touch screens */
   }
   
-  .step-card-number {
-    font-size: 5rem;
-  }
-  
   /* Inline Image for Mobile Viewports */
   .step-card-mobile-image {
     display: block;
@@ -545,11 +523,6 @@
   
   .process-step-card {
     padding: 1.5rem;
-  }
-  
-  .step-card-number {
-    font-size: 3.5rem;
-    right: 1rem;
   }
   
   .step-card-mobile-image {

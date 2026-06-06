@@ -42,22 +42,23 @@
 }
 
 .contact-info {
-  background: var(--bg-primary); /* Deep dark navy background */
-  color: var(--text-main);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--text-dark);
   padding: 3.5rem;
   border-radius: var(--radius-lg);
-  box-shadow: 0 30px 60px -15px rgba(5, 11, 20, 0.3);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.03);
 }
 
 .info-title {
   font-size: clamp(1.35rem, 3vw, 1.65rem);
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #ffffff;
+  color: #ffb800; /* Yellow accent title */
 }
 
 .info-desc {
-  color: var(--text-muted);
+  color: var(--text-dark-muted);
   margin-bottom: 2.5rem;
   line-height: 1.6;
   font-size: clamp(0.875rem, 1.5vw, 1rem);
@@ -84,18 +85,19 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: rgba(255, 184, 0, 0.06);
+  border: 1px solid rgba(255, 184, 0, 0.15);
+  color: #ffb800;
   flex-shrink: 0;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .info-item:hover .info-icon-wrapper {
-  background-color: #ffffff;
-  color: var(--bg-primary); /* Invert colors on hover */
+  background-color: #ffb800;
+  color: #ffffff;
+  border-color: #ffb800;
   transform: scale(1.08) translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px rgba(255, 184, 0, 0.25);
 }
 
 .contact-icon-svg {
@@ -106,7 +108,7 @@
 .info-label {
   display: block;
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--text-dark-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.25rem;
@@ -115,7 +117,7 @@
 .contact-link-text {
   font-weight: 500;
   font-size: clamp(1rem, 2vw, 1.125rem);
-  color: #ffffff;
+  color: var(--text-dark);
 }
 
 /* Form Styles */
@@ -157,21 +159,21 @@
   width: 100%;
   padding: 1rem 1.25rem;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(10, 17, 34, 0.08);
-  background-color: var(--bg-light);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #f8f9fa;
   font-family: inherit;
   font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--text-dark);
 }
 
-/* Focused elements use navy/blue outline instead of bright yellow */
+/* Focused elements use yellow outline */
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--bg-primary); /* Deep Navy border on focus */
+  border-color: #ffb800;
   background-color: var(--bg-white);
-  box-shadow: 0 0 0 4px rgba(10, 17, 34, 0.08);
+  box-shadow: 0 0 0 4px rgba(255, 184, 0, 0.15);
 }
 
 .form-group textarea {
@@ -185,17 +187,17 @@
   font-size: 1.05rem;
   width: 100%;
   cursor: pointer;
-  background-color: var(--bg-primary);
-  color: var(--bg-white);
+  background-color: #ffb800; /* Yellow submit button background */
+  color: #000000; /* Black text for high premium contrast */
   border-radius: var(--radius-sm);
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .form-submit:hover {
-  background-color: #000;
+  background-color: #e5a200;
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(5, 11, 20, 0.25);
+  box-shadow: 0 15px 30px -5px rgba(255, 184, 0, 0.25);
 }
 
 /* ===== RESPONSIVE ===== */

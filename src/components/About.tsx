@@ -4,106 +4,123 @@ import { useEffect, useRef, useState } from 'react';
 import './About.css';
 
 export default function About() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const runwayRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
 
-  // Trigger visibility when section enters viewport
+  // Handle window resizing to toggle sticky behavior on desktop viewports
   useEffect(() => {
-    if (!sectionRef.current) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.15 }
-    );
-    obs.observe(sectionRef.current);
-    return () => obs.disconnect();
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Scroll-driven parallax for the headline
+  // Track scroll progress of the runway container (only on desktop)
   useEffect(() => {
+    if (!isDesktop) return;
+
     const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
+      if (!runwayRef.current) return;
+      const rect = runwayRef.current.getBoundingClientRect();
+      const runwayHeight = rect.height;
       const windowHeight = window.innerHeight;
-      // Progress: 0 when section enters viewport bottom, 1 when section top reaches viewport top
-      const progress = Math.min(
-        Math.max((windowHeight - rect.top) / (windowHeight + rect.height), 0),
-        1
-      );
+      
+      // Calculate scroll progress between 0 and 1
+      // starts when the top of the runway is at the top of the viewport (rect.top <= 0)
+      // ends when the runway is fully scrolled (rect.bottom <= windowHeight)
+      const totalScrollable = runwayHeight - windowHeight;
+      const progress = Math.min(Math.max(-rect.top / totalScrollable, 0), 1);
+      
       setScrollProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // initialize
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isDesktop]);
 
-  const words = ['About', 'Golden', 'Key', 'Ventures'];
+  // Transform values for desktop sticky scroll interaction
+  // Image starts centered (translateX: 46% of column width) and scaled up (1.55)
+  // Maps to translateX: 0 and scale: 1 at progress: 1
+  const imageTranslateX = (1 - scrollProgress) * 46; // shift in % of left column width
+  const imageScale = 1 + (1 - scrollProgress) * 0.55; // scale from 1.55 down to 1
+  
+  // Text starts invisible and translateY(40px), then reveals after progress > 0.35
+  const textProgress = scrollProgress < 0.35 ? 0 : Math.min((scrollProgress - 0.35) / 0.5, 1);
+  const textTranslateY = (1 - textProgress) * 40;
+  const textOpacity = textProgress;
 
-  // Parallax values driven by scroll
-  const headlineY = (1 - scrollProgress) * 60; // starts 60px down, scrolls to 0
-  const headlineScale = 0.92 + scrollProgress * 0.08; // scales from 0.92 to 1
+  if (!isDesktop) {
+    // Standard static layout for mobile/tablet
+    return (
+      <section id="about" className="about-section-new">
+        <div className="container about-container-new">
+          <div className="about-col-left">
+            <div className="about-img-wrapper">
+              <img src="/aboutus.png" alt="Building Schematic Blueprint Render" className="about-blueprint-img" />
+            </div>
+          </div>
+          <div className="about-col-right">
+            <span className="about-badge-new">Who We Are</span>
+            <h2 className="about-title-new">About Golden Key Ventures</h2>
+            <p className="about-desc-new">
+              Premier construction &amp; design — rooted in Mysuru, built on precision. Every project reflects our dedication to exceptional design, quality craftsmanship, and lasting value. From concept to completion, we deliver spaces that endure.
+            </p>
+            <div className="about-focus-box">
+              <span className="focus-label">Key Focus:</span>
+              <span className="focus-text">Quality craftsmanship — On-time delivery — Precision design</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
+  // Sticky scroll-pinned runway layout for desktop
   return (
-    <section id="about" className="about-section" ref={sectionRef}>
-      {/* Background image with parallax */}
-      <div
-        className="about-bg"
-        style={{
-          transform: `translateY(${(1 - scrollProgress) * 30}px) scale(${1 + scrollProgress * 0.05})`,
-        }}
-      ></div>
-      <div className="about-bg-overlay"></div>
+    <div className="about-runway" ref={runwayRef}>
+      <section id="about" className="about-section-sticky">
+        <div className="container about-container-new">
+          
+          {/* Left Column: Image (scrolls from center to left and scales down) */}
+          <div 
+            className="about-col-left"
+            style={{
+              transform: `translateX(${imageTranslateX}%) scale(${imageScale})`,
+              transition: 'transform 0.1s cubic-bezier(0.1, 0.8, 0.2, 1)'
+            }}
+          >
+            <div className="about-img-wrapper">
+              <img src="/aboutus.png" alt="Building Schematic Blueprint Render" className="about-blueprint-img" />
+            </div>
+          </div>
 
-      {/* Content */}
-      <div className="about-content container">
-        {/* Badge */}
-        <div className={`about-badge ${isVisible ? 'about-badge--visible' : ''}`}>
-          Our Commitment to Excellence
+          {/* Right Column: Text Content (fades/slides in once image shifts) */}
+          <div 
+            className="about-col-right"
+            style={{
+              transform: `translateY(${textTranslateY}px)`,
+              opacity: textOpacity,
+              transition: 'transform 0.15s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 0.15s ease-out'
+            }}
+          >
+            <span className="about-badge-new">Who We Are</span>
+            <h2 className="about-title-new">About Golden Key Ventures</h2>
+            <p className="about-desc-new">
+              Premier construction &amp; design — rooted in Mysuru, built on precision. Every project reflects our dedication to exceptional design, quality craftsmanship, and lasting value. From concept to completion, we deliver spaces that endure.
+            </p>
+            
+            <div className="about-focus-box">
+              <span className="focus-label">Key Focus:</span>
+              <span className="focus-text">Quality craftsmanship — On-time delivery — Precision design</span>
+            </div>
+          </div>
+
         </div>
-
-        {/* Animated headline - each word reveals with stagger */}
-        <h2
-          className="about-headline"
-          ref={headlineRef}
-          style={{
-            transform: `translateY(${headlineY}px) scale(${headlineScale})`,
-          }}
-        >
-          {words.map((word, i) => (
-            <span
-              key={i}
-              className={`about-word ${isVisible ? 'about-word--visible' : ''}`}
-              style={{ transitionDelay: `${200 + i * 120}ms` }}
-            >
-              {word}
-            </span>
-          ))}
-        </h2>
-
-        {/* Subtitle */}
-        <p className={`about-subtitle ${isVisible ? 'about-subtitle--visible' : ''}`}>
-          Premier construction &amp; design — rooted in Mysuru, built on precision. From concept to completion, we deliver spaces that endure.
-        </p>
-
-        {/* CTA */}
-        <div className={`about-cta ${isVisible ? 'about-cta--visible' : ''}`}>
-          <a href="#services" className="about-btn">
-            Learn More
-          </a>
-          <a href="#services" className="about-btn-arrow" aria-label="Go to services">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

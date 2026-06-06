@@ -54,11 +54,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      
-      {/* Floating WhatsApp Button */}
-      <a href="https://wa.me/919876543210" className="whatsapp-float bg-green-500" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        💬
-      </a>
     </footer>
   );
 }

@@ -178,9 +178,6 @@ export default function Process() {
                 className={`process-step-card ${idx === activeIndex ? 'active' : ''}`}
                 onClick={() => handleStepClick(idx)}
               >
-                {/* Large Background Step Number */}
-                <div className="step-card-number">{step.id}</div>
-                
                 <div className="step-card-header">
                   <span className="step-card-phase">{step.phase}</span>
                   <h3 className="step-card-title">{step.title}</h3>
