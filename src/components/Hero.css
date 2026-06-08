@@ -37,15 +37,17 @@
 
 .hero-badge {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.35rem 1rem;
   background: var(--bg-white);
   border-radius: 50px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--text-dark-muted);
   box-shadow: var(--shadow-sm);
   margin-bottom: 2rem;
   border: 1px solid rgba(0,0,0,0.05);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .hero-title {
@@ -261,7 +263,7 @@
   }
 
   .hero-badge {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     margin-bottom: 1.25rem;
   }
 

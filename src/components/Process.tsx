@@ -9,7 +9,7 @@ const steps = [
     phase: 'PHASE 01',
     title: 'Consultation & Requirement Gathering',
     desc: 'We start by understanding your vision, budget, and timeline. Our process is collaborative, ensuring every detail is captured before any blueprints are drafted.',
-    image: '/media__1775044940985.png',
+    image: '/how%20we%20work/phase%201.png',
     deliverables: ['Client Vision Briefing', 'On-Site Feasibility Assessment', 'Initial Budget Projections', 'Project Timeline Roadmap']
   },
   {
@@ -17,7 +17,7 @@ const steps = [
     phase: 'PHASE 02',
     title: 'Planning & Design',
     desc: 'Our architecture team drafts detailed blueprints, structural plans, and realistic 3D models. We turn abstract ideas into fully realized spatial concepts.',
-    image: '/architectural_blueprint_1775046419292.png',
+    image: '/how%20we%20work/phase%202.png',
     deliverables: ['Architectural 3D Visualizations', 'Detailed Structural Blueprints', 'Floor Plan Engineering', 'Regulatory Approvals']
   },
   {
@@ -25,7 +25,7 @@ const steps = [
     phase: 'PHASE 03',
     title: 'Material Selection & Approval',
     desc: 'Collaborative selection of premium materials, structural fixtures, and finishes. We balance high-end aesthetics with structural longevity and budget accuracy.',
-    image: '/luxury_interior_design_1775046387018.png',
+    image: '/how%20we%20work/phase%203.png',
     deliverables: ['Custom Finishes Palette', 'Premium Material Sourcing', 'Subcontractor Procurement', 'Guaranteed Maximum Price (GMP)']
   },
   {
@@ -33,7 +33,7 @@ const steps = [
     phase: 'PHASE 04',
     title: 'Construction Execution',
     desc: 'Our skilled professionals, engineers, and project managers bring the approved design to life with strict adherence to safety, quality, and timelines.',
-    image: '/modern_construction_site_1775046369628.png',
+    image: '/how%20we%20work/phase%204.png',
     deliverables: ['General Civil Works', 'On-Site Safety Oversight', 'Weekly Progress Reporting', 'Structural Quality Audits']
   },
   {
@@ -41,7 +41,7 @@ const steps = [
     phase: 'PHASE 05',
     title: 'Quality Check & Delivery',
     desc: 'Rigorous engineering inspections and details checklist verification. We guarantee an immaculate handover, leaving you with a structure built to endure.',
-    image: '/residential_villa_1775046517512.png',
+    image: '/how%20we%20work/phase%205.png',
     deliverables: ['Detailed Snag List Clearance', 'Independent Inspections', 'Client Walkthrough Audit', 'Final Handover & Keys Ceremony']
   }
 ];
@@ -53,32 +53,35 @@ export default function Process() {
   const clickTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-30% 0px -30% 0px',
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      // If we are currently scrolling due to a click, bypass the observer auto-update
+    const handleScroll = () => {
+      // If we are currently scrolling due to a click, bypass scroll tracking
       if (isClickScrolling.current) return;
 
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = Number(entry.target.getAttribute('data-index'));
-          if (!isNaN(index)) {
-            setActiveIndex(index);
-          }
+      const focusPoint = window.innerHeight * 0.35; // 35% down from top of screen is the sweet spot
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      stepsRef.current.forEach((stepEl, idx) => {
+        if (!stepEl) return;
+        const rect = stepEl.getBoundingClientRect();
+        
+        // Calculate distance between the step card's top and our focus point
+        const distance = Math.abs(rect.top - focusPoint);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = idx;
         }
       });
-    }, observerOptions);
 
-    stepsRef.current.forEach((stepEl) => {
-      if (stepEl) observer.observe(stepEl);
-    });
+      setActiveIndex(closestIndex);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Run initial check on load
+    handleScroll();
 
     return () => {
-      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
       if (clickTimeout.current) clearTimeout(clickTimeout.current);
     };
   }, []);
@@ -132,7 +135,7 @@ export default function Process() {
                   <div 
                     key={step.id} 
                     className={`visualizer-img-wrapper ${idx === activeIndex ? 'active' : ''}`}
-                    style={{ backgroundImage: `url(${step.image})` }}
+                    style={{ backgroundImage: `url("${step.image}")` }}
                   >
                     <div className="visualizer-img-overlay"></div>
                   </div>
@@ -186,7 +189,7 @@ export default function Process() {
                 <p className="step-card-desc">{step.desc}</p>
 
                 {/* Mobile-only Image (Hidden on Desktop) */}
-                <div className="step-card-mobile-image" style={{ backgroundImage: `url(${step.image})` }}>
+                <div className="step-card-mobile-image" style={{ backgroundImage: `url("${step.image}")` }}>
                   <div className="visualizer-img-overlay"></div>
                 </div>
 

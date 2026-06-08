@@ -14,16 +14,16 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1.25rem;
+  padding: 0.35rem 1rem;
   background: rgba(10, 17, 34, 0.03);
   border: 1px solid rgba(10, 17, 34, 0.08);
   border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: var(--text-dark-muted);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 .contact-subtitle {
@@ -32,6 +32,7 @@
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+  text-align: center;
 }
 
 .contact-grid {
@@ -114,10 +115,22 @@
   margin-bottom: 0.25rem;
 }
 
+.info-text {
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.info-text p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
 .contact-link-text {
   font-weight: 500;
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(0.85rem, 2vw, 1.125rem);
   color: var(--text-dark);
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 /* Form Styles */
@@ -216,7 +229,13 @@
 @media (max-width: 900px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
+  }
+  .contact-info,
+  .contact-form-wrapper {
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto;
   }
 }
 
