@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -7,10 +7,25 @@ import Services from '../components/Services';
 import Process from '../components/Process';
 import Projects from '../components/Projects';
 import WhyChooseUs from '../components/WhyChooseUs';
+import MapSection from '../components/MapSection';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
 export default function Home() {
+  const [showNotification, setShowNotification] = useState(false);
+
+  useEffect(() => {
+    const handleFormSubmitted = () => {
+      setShowNotification(true);
+      const timer = setTimeout(() => {
+        setShowNotification(false);
+      }, 7000); // Show for 7 seconds
+      return () => clearTimeout(timer);
+    };
+
+    window.addEventListener('form-submitted', handleFormSubmitted);
+    return () => window.removeEventListener('form-submitted', handleFormSubmitted);
+  }, []);
 
   useEffect(() => {
     // Intersection Observer for Scroll Animations
@@ -24,8 +39,6 @@ export default function Home() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          // Optional: stop observing once animated
-          // observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
@@ -40,6 +53,15 @@ export default function Home() {
 
   return (
     <main className="main-app">
+      {showNotification && (
+        <div className="submission-badge-floating">
+          <div className="submission-badge-content">
+            <span className="badge-icon">✓</span>
+            <span className="badge-text">Your form has been submitted successfully!</span>
+            <button className="badge-close" onClick={() => setShowNotification(false)} aria-label="Close message">×</button>
+          </div>
+        </div>
+      )}
       <Header />
       <Hero />
       <About />
@@ -47,6 +69,7 @@ export default function Home() {
       <WhyChooseUs />
       <Process />
       <Projects />
+      <MapSection />
       <Contact />
       <Footer />
     </main>

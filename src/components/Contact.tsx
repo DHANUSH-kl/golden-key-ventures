@@ -1,6 +1,35 @@
+'use client';
+
+import React from 'react';
 import './Contact.css';
 
 export default function Contact() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const phone = formData.get('phone') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+
+    const messageText = `*New Inquiry for Golden Key Ventures*
+
+*Name:* ${name}
+*Phone:* ${phone}
+*Email:* ${email}
+*Message:* ${message}`;
+
+    const whatsappUrl = `https://wa.me/919900447762?text=${encodeURIComponent(messageText)}`;
+    
+    // Open WhatsApp in a new window/tab
+    window.open(whatsappUrl, '_blank');
+
+    // Trigger notification badge
+    window.dispatchEvent(new CustomEvent('form-submitted'));
+
+    // Reset the form inputs
+    e.currentTarget.reset();
+  };
   return (
     <section id="contact" className="contact section-padding">
       <div className="container">
@@ -34,7 +63,11 @@ export default function Contact() {
                 </div>
                 <div className="info-text">
                   <span className="info-label">Address</span>
-                  <p>Near Bannur Area, Mysore, Karnataka</p>
+                  <p>
+                    42#, H.S. Complex, 80 Feet Road,<br />
+                    1st Floor, Manasi Nagar,<br />
+                    Near Bannur Ring Road, Mysore - 570019
+                  </p>
                 </div>
               </div>
 
@@ -47,7 +80,7 @@ export default function Contact() {
                 </div>
                 <div className="info-text">
                   <span className="info-label">Phone</span>
-                  <p className="contact-link-text">+91 99004 47762</p>
+                  <p className="contact-link-text">+91 81478 14709</p>
                 </div>
               </div>
 
@@ -70,26 +103,26 @@ export default function Contact() {
 
           {/* Right Panel: Callback Form */}
           <div className="contact-form-wrapper slide-up delay-200">
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" placeholder="John Doe" required />
+                <input type="text" id="name" name="name" placeholder="John Doe" required />
               </div>
               
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="phone">Phone Number</label>
-                  <input type="tel" id="phone" placeholder="+91 99004 47762" required />
+                  <input type="tel" id="phone" name="phone" placeholder="+91 81478 14709" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">Email Address</label>
-                  <input type="email" id="email" placeholder="john@example.com" required />
+                  <input type="email" id="email" name="email" placeholder="john@example.com" required />
                 </div>
               </div>
 
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea id="message" rows={4} placeholder="Describe your construction or renovation needs..." required></textarea>
+                <textarea id="message" name="message" rows={4} placeholder="Describe your construction or renovation needs..." required></textarea>
               </div>
 
               <button className="btn btn-primary form-submit">Request a Callback</button>

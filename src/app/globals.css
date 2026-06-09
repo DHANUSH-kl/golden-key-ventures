@@ -134,3 +134,91 @@ img {
     padding: 0 1rem;
   }
 }
+
+/* Form Submission Floating Notification Badge */
+@keyframes slide-down-badge {
+  from {
+    transform: translate(-50%, -100px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.submission-badge-floating {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  animation: slide-down-badge 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.submission-badge-content {
+  background: rgba(56, 42, 30, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: 0 15px 35px rgba(56, 42, 30, 0.2);
+}
+
+.badge-icon {
+  background-color: #8b5c1a; /* Warm gold check */
+  color: #ffffff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.badge-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.badge-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.5rem;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.badge-close:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .submission-badge-floating {
+    top: 20px;
+    width: calc(100% - 40px);
+  }
+  .submission-badge-content {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.65rem 1.25rem;
+  }
+  .badge-text {
+    font-size: 0.82rem;
+  }
+}

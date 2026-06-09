@@ -36,22 +36,19 @@ const testimonials = [
     title: "Exceptional Quality and Service",
     text: "Golden Key Ventures exceeded our expectations on our commercial project. Their attention to detail and commitment to deadlines were outstanding. We highly recommend them for any large-scale construction needs.",
     author: "John D.",
-    role: "CEO, Urban Developments",
-    image: "/client_portrait_john.png"
+    role: "CEO, Urban Developments"
   },
   {
     title: "Impeccable Timing and Communication",
     text: "From blueprints to handover, their transparent pricing and impeccable timing stood out. They communicated with us every step of the way, making the entire building process stress-free.",
     author: "Vikram S.",
-    role: "Business Owner",
-    image: "/client_portrait_vikram.png"
+    role: "Business Owner"
   },
   {
     title: "Luxury Interior Transformations",
     text: "The interior finishings are exceptional. They turned our empty villa space into a luxurious, functional home that perfectly matches our lifestyle. Highly recommend their craftsmanship!",
     author: "Aditi P.",
-    role: "Property Investor",
-    image: "/client_portrait_aditi.png"
+    role: "Property Investor"
   }
 ];
 
@@ -112,16 +109,6 @@ function AnimatedCounter({ target, suffix }: { target: number; suffix: string })
 
 
 export default function WhyChooseUs() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  };
-
   return (
     <>
       {/* Achievements Section */}
@@ -182,7 +169,6 @@ export default function WhyChooseUs() {
       {/* Testimonials Section */}
       <section className="testimonials section-padding" id="testimonials">
         <div className="container">
-          
           <div className="testimonials-header fade-in">
             <div className="testimonials-badge">
               Trusted By Many
@@ -192,53 +178,39 @@ export default function WhyChooseUs() {
               Hear directly from clients who have experienced the Golden Key Ventures difference.
             </p>
           </div>
+        </div>
 
-          <div className="testimonial-slider-container slide-up delay-100">
-            
-            {/* Left Side: Active Testimonial Card */}
-            <div className="testimonial-slide-card">
-              <div className="testimonial-slide-content">
-                <h3 className="testimonial-slide-title">
-                  {testimonials[activeIndex].title}
-                </h3>
-                <p className="testimonial-slide-text">
-                  “{testimonials[activeIndex].text}”
-                </p>
-              </div>
-              
-              <div className="testimonial-slide-footer">
-                <div className="testimonial-slide-author">
-                  <span className="author-name">{testimonials[activeIndex].author}</span>
-                  <span className="author-role">{testimonials[activeIndex].role}</span>
+        {/* Infinite edge-to-edge marquee container */}
+        <div className="testimonials-marquee-container slide-up delay-200">
+          <div className="testimonials-marquee-track">
+            {[...testimonials, ...testimonials, ...testimonials].map((t, index) => (
+              <div className="testimonial-card-new" key={index}>
+                <div className="testimonial-card-top">
+                  <div className="testimonial-stars-new">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    ))}
+                  </div>
+                  <div className="testimonial-quote-wrapper">
+                    <svg className="quote-icon-new" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                  </div>
                 </div>
                 
-                <div className="testimonial-slide-nav">
-                  <button className="nav-btn prev-btn" onClick={handlePrev} aria-label="Previous">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                  </button>
-                  <button className="nav-btn next-btn" onClick={handleNext} aria-label="Next">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                  </button>
+                <h3 className="testimonial-title-new">{t.title}</h3>
+                <p className="testimonial-text-new">“{t.text}”</p>
+                
+                <div className="testimonial-footer-new">
+                  <div className="testimonial-line-new"></div>
+                  <div className="author-name-new">{t.author}</div>
+                  <div className="author-role-new">{t.role}</div>
                 </div>
               </div>
-            </div>
-
-            {/* Right Side: Active Client Portrait */}
-            <div className="testimonial-slide-image-wrapper">
-              <div 
-                className="testimonial-slide-image"
-                key={activeIndex} /* Key forces browser re-mount for animation */
-                style={{ backgroundImage: `url(${testimonials[activeIndex].image})` }}
-              ></div>
-              <div className="testimonial-slide-image-overlay"></div>
-            </div>
-
+            ))}
           </div>
-
         </div>
       </section>
     </>

@@ -5,47 +5,51 @@ import './Projects.css';
 
 // Helper to generate sequential interior images
 const generateInteriorImages = () => {
-  const list = [];
+  const list: { id: string; image: string; category: string }[] = [];
   
-  // 1st-F-Interior (16 images)
-  for (let i = 1; i <= 16; i++) {
+  // 1st-F-Interior (existing pages)
+  const firstFInteriorPages = [1, 2, 3, 7, 10, 11, 13, 14, 16];
+  firstFInteriorPages.forEach((i) => {
     const num = String(i).padStart(4, '0');
     list.push({
       id: `int-1st-${i}`,
       image: `/interior/1st-F-Interior/1st F Interior_page-${num}.jpg`,
       category: 'Interior'
     });
-  }
+  });
   
-  // G-F-Interior (14 images)
-  for (let i = 1; i <= 14; i++) {
+  // G-F-Interior (existing pages)
+  const gfInteriorPages = [1, 2, 4, 5, 7, 8, 9, 10];
+  gfInteriorPages.forEach((i) => {
     const num = String(i).padStart(4, '0');
     list.push({
       id: `int-gf-${i}`,
       image: `/interior/G-F-Interior/G F Interior_page-${num}.jpg`,
       category: 'Interior'
     });
-  }
+  });
   
-  // KTICHEN-1_merged (14 images)
-  for (let i = 1; i <= 14; i++) {
+  // KTICHEN-1_merged (existing pages)
+  const kitchenPages = [1, 3, 6, 8, 10, 12];
+  kitchenPages.forEach((i) => {
     const num = String(i).padStart(4, '0');
     list.push({
       id: `int-kt-${i}`,
       image: `/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-${num}.jpg`,
       category: 'Interior'
     });
-  }
+  });
   
-  // SUDIKSHA-INTERIOR (8 images)
-  for (let i = 1; i <= 8; i++) {
+  // SUDIKSHA-INTERIOR (existing pages)
+  const sudikshaPages = [2, 4, 5, 6, 7, 8];
+  sudikshaPages.forEach((i) => {
     const num = String(i).padStart(4, '0');
     list.push({
       id: `int-su-${i}`,
       image: `/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-${num}.jpg`,
       category: 'Interior'
     });
-  }
+  });
   
   return list;
 };
@@ -54,12 +58,12 @@ const projects = [
   // Commercial
   {
     id: 'comm-1',
-    image: '/commercial_building_1775046491084.png',
+    image: '/integrated%20solutions/Commercial%20Construction.png',
     category: 'Commercial',
   },
   {
     id: 'comm-2',
-    image: '/modern_construction_site_1775046369628.png',
+    image: '/integrated%20solutions/Industrial%20Construction.png',
     category: 'Commercial',
   },
   // Exterior (new ones)
