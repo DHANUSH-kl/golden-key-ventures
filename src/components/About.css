@@ -80,7 +80,7 @@
   display: inline-block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #718096;
+  color: #4a5568;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: 0.75rem;
@@ -89,7 +89,7 @@
 .about-title-new {
   font-size: clamp(2rem, 3.2vw, 2.75rem);
   font-weight: 700;
-  color: #ffb800; /* Yellow accent title from screenshot */
+  color: var(--text-dark); /* Improved contrast matching other section titles */
   line-height: 1.25;
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
@@ -113,7 +113,7 @@
   display: block;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #718096;
+  color: #4a5568;
   margin-bottom: 0.4rem;
 }
 

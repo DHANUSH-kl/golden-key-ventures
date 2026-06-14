@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import './Services.css';
 
 // SVG Verified Badge Component
@@ -20,7 +21,7 @@ const services = [
     id: '1', 
     title: 'Material Supply', 
     desc: 'Premium quality materials sourced for durability and aesthetic excellence.',
-    image: '/integrated%20solutions/material%20supply.png',
+    image: '/integrated%20solutions/material%20supply.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="3" width="20" height="5" rx="1"/>
@@ -34,7 +35,7 @@ const services = [
     id: '2', 
     title: 'Architecture Designing', 
     desc: 'Innovative architectural concepts that blend form, function, and style.',
-    image: '/integrated%20solutions/Architecture%20Designing.png',
+    image: '/integrated%20solutions/Architecture%20Designing.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="m21 16-6-6M9 10 3 16M12 2v4M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
@@ -46,7 +47,7 @@ const services = [
     id: '3', 
     title: 'Residential Construction', 
     desc: 'Custom home building tailored to your lifestyle and personal vision.',
-    image: '/integrated%20solutions/Residential%20Construction.png',
+    image: '/integrated%20solutions/Residential%20Construction.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
@@ -58,7 +59,7 @@ const services = [
     id: '4', 
     title: 'Commercial Construction', 
     desc: 'State-of-the-art commercial spaces designed for business growth.',
-    image: '/integrated%20solutions/Commercial%20Construction.png',
+    image: '/integrated%20solutions/Commercial%20Construction.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
@@ -73,7 +74,7 @@ const services = [
     id: '5', 
     title: 'Interior Works', 
     desc: 'Luxurious and functional interior finishing that transforms spaces.',
-    image: '/integrated%20solutions/Interior%20Works%20Card.png',
+    image: '/integrated%20solutions/Interior%20Works%20Card.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2v8M6 10h12M4 21v-8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8M8 21v-4h8v4"/>
@@ -84,7 +85,7 @@ const services = [
     id: '6', 
     title: 'Pre Construction Planning', 
     desc: 'Detailed planning and feasibility studies for seamless execution.',
-    image: '/integrated%20solutions/Pre%20Construction%20Planning.png',
+    image: '/integrated%20solutions/Pre%20Construction%20Planning.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -98,7 +99,7 @@ const services = [
     id: '7', 
     title: 'Renovation Services', 
     desc: 'Expert remodeling to breathe new life into existing structures.',
-    image: '/integrated%20solutions/Renovation%20Services.png',
+    image: '/integrated%20solutions/Renovation%20Services.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="m18.42 9.42-8 8a2.12 2.12 0 1 1-3-3l8-8M15 5l4 4M9 21h3M14 3l7 7M3 14l7 7"/>
@@ -109,7 +110,7 @@ const services = [
     id: '8', 
     title: 'Layout Development', 
     desc: 'Strategic space planning and landscape integration.',
-    image: '/integrated%20solutions/Layout%20Development.png',
+    image: '/integrated%20solutions/Layout%20Development.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polygon points="12 2 2 7 12 12 22 7 12 2"/>
@@ -122,7 +123,7 @@ const services = [
     id: '9', 
     title: 'Industrial Construction', 
     desc: 'Robust industrial facilities built for heavy-duty operations.',
-    image: '/integrated%20solutions/Industrial%20Construction.png',
+    image: '/integrated%20solutions/Industrial%20Construction.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 21H2V3l7 4 7-4 6 4v14zM14 17h4v-4h-4v4zM7 17h4v-4H7v4z"/>
@@ -133,7 +134,7 @@ const services = [
     id: '10', 
     title: 'Structural Design', 
     desc: 'Engineering safe, resilient, and enduring structural frameworks.',
-    image: '/integrated%20solutions/Structural%20Design.png',
+    image: '/integrated%20solutions/Structural%20Design.webp',
     icon: (
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -202,10 +203,15 @@ export default function Services() {
           {services.map((svc) => (
             <div className="service-card" key={svc.id}>
               {/* Background Zooming Image */}
-              <div 
-                className="service-card-bg"
-                style={{ backgroundImage: `url('${svc.image}')` }}
-              ></div>
+              <div className="service-card-bg">
+                <Image
+                  src={svc.image}
+                  alt={svc.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
               <div className="service-card-overlay"></div>
               
               {/* Bottom Info Bubble (Beige Card) */}

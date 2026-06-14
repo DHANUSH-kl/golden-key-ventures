@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import './About.css';
 
 export default function About() {
@@ -60,7 +61,13 @@ export default function About() {
         <div className="container about-container-new">
           <div className="about-col-left">
             <div className="about-img-wrapper">
-              <img src="/aboutus.png" alt="Building Schematic Blueprint Render" className="about-blueprint-img" />
+              <Image 
+                src="/aboutus.webp" 
+                alt="Building Schematic Blueprint Render" 
+                className="about-blueprint-img" 
+                width={600}
+                height={450}
+              />
             </div>
           </div>
           <div className="about-col-right">
@@ -94,7 +101,13 @@ export default function About() {
             }}
           >
             <div className="about-img-wrapper">
-              <img src="/aboutus.png" alt="Building Schematic Blueprint Render" className="about-blueprint-img" />
+              <Image 
+                src="/aboutus.webp" 
+                alt="Building Schematic Blueprint Render" 
+                className="about-blueprint-img" 
+                width={600}
+                height={450}
+              />
             </div>
           </div>
 

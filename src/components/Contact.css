@@ -55,7 +55,7 @@
   font-size: clamp(1.35rem, 3vw, 1.65rem);
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #ffb800; /* Yellow accent title */
+  color: #8b5c1a; /* Improved high contrast warm gold */
 }
 
 .info-desc {
@@ -86,19 +86,19 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(255, 184, 0, 0.06);
-  border: 1px solid rgba(255, 184, 0, 0.15);
-  color: #ffb800;
+  background: rgba(139, 92, 26, 0.06);
+  border: 1px solid rgba(139, 92, 26, 0.15);
+  color: #8b5c1a;
   flex-shrink: 0;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .info-item:hover .info-icon-wrapper {
-  background-color: #ffb800;
+  background-color: #8b5c1a;
   color: #ffffff;
-  border-color: #ffb800;
+  border-color: #8b5c1a;
   transform: scale(1.08) translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 184, 0, 0.25);
+  box-shadow: 0 8px 20px rgba(139, 92, 26, 0.25);
 }
 
 .contact-icon-svg {

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import './Projects.css';
 
 // Helper to generate sequential interior images
@@ -13,7 +14,7 @@ const generateInteriorImages = () => {
     const num = String(i).padStart(4, '0');
     list.push({
       id: `int-1st-${i}`,
-      image: `/interior/1st-F-Interior/1st F Interior_page-${num}.jpg`,
+      image: `/interior/1st-F-Interior/1st F Interior_page-${num}.webp`,
       category: 'Interior'
     });
   });
@@ -24,7 +25,7 @@ const generateInteriorImages = () => {
     const num = String(i).padStart(4, '0');
     list.push({
       id: `int-gf-${i}`,
-      image: `/interior/G-F-Interior/G F Interior_page-${num}.jpg`,
+      image: `/interior/G-F-Interior/G F Interior_page-${num}.webp`,
       category: 'Interior'
     });
   });
@@ -35,7 +36,7 @@ const generateInteriorImages = () => {
     const num = String(i).padStart(4, '0');
     list.push({
       id: `int-kt-${i}`,
-      image: `/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-${num}.jpg`,
+      image: `/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-${num}.webp`,
       category: 'Interior'
     });
   });
@@ -46,7 +47,7 @@ const generateInteriorImages = () => {
     const num = String(i).padStart(4, '0');
     list.push({
       id: `int-su-${i}`,
-      image: `/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-${num}.jpg`,
+      image: `/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-${num}.webp`,
       category: 'Interior'
     });
   });
@@ -58,28 +59,28 @@ const projects = [
   // Commercial
   {
     id: 'comm-1',
-    image: '/integrated%20solutions/Commercial%20Construction.png',
+    image: '/integrated%20solutions/Commercial%20Construction.webp',
     category: 'Commercial',
   },
   {
     id: 'comm-2',
-    image: '/integrated%20solutions/Industrial%20Construction.png',
+    image: '/integrated%20solutions/Industrial%20Construction.webp',
     category: 'Commercial',
   },
   // Exterior (new ones)
   {
     id: 'ext-new-1',
-    image: '/exterior/Enscape_2023-12-02-12-32-02.png',
+    image: '/exterior/Enscape_2023-12-02-12-32-02.webp',
     category: 'Exterior',
   },
   {
     id: 'ext-new-2',
-    image: '/exterior/Enscape_2023-12-02-12-33-07.png',
+    image: '/exterior/Enscape_2023-12-02-12-33-07.webp',
     category: 'Exterior',
   },
   {
     id: 'ext-new-3',
-    image: '/exterior/Enscape_2023-12-02-12-37-39.png',
+    image: '/exterior/Enscape_2023-12-02-12-37-39.webp',
     category: 'Exterior',
   },
   // Interior
@@ -156,12 +157,13 @@ export default function Projects() {
               onClick={() => setLightboxImage(project.image)}
             >
               <div className="gallery-image-wrapper">
-                <img 
+                <Image 
                   src={project.image} 
                   alt={`Project ${project.id}`} 
                   className="gallery-image" 
-                  loading="lazy"
-                  decoding="async"
+                  width={600}
+                  height={450}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="gallery-overlay">
                   <div className="gallery-overlay-content">
@@ -188,7 +190,14 @@ export default function Projects() {
       {lightboxImage && (
         <div className="lightbox-backdrop" onClick={() => setLightboxImage(null)}>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={lightboxImage} alt="Enlarged Project View" className="lightbox-image" />
+            <Image 
+              src={lightboxImage} 
+              alt="Enlarged Project View" 
+              className="lightbox-image" 
+              width={1200}
+              height={900}
+              sizes="90vw"
+            />
             <button className="lightbox-close" onClick={() => setLightboxImage(null)}>×</button>
           </div>
         </div>

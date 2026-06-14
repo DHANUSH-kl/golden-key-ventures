@@ -2,53 +2,54 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import './Hero.css';
 
 const exteriorImages = [
-  '/exterior/Enscape_2023-12-02-12-32-02.png',
-  '/exterior/Enscape_2023-12-02-12-33-07.png',
-  '/exterior/Enscape_2023-12-02-12-37-39.png'
+  '/exterior/Enscape_2023-12-02-12-32-02.webp',
+  '/exterior/Enscape_2023-12-02-12-33-07.webp',
+  '/exterior/Enscape_2023-12-02-12-37-39.webp'
 ];
 
 const interiorImages = [
-  '/interior/1st-F-Interior/1st F Interior_page-0001.jpg',
-  '/interior/1st-F-Interior/1st F Interior_page-0002.jpg',
-  '/interior/1st-F-Interior/1st F Interior_page-0003.jpg',
-  '/interior/1st-F-Interior/1st F Interior_page-0007.jpg',
-  '/interior/1st-F-Interior/1st F Interior_page-0010.jpg',
-  '/interior/1st-F-Interior/1st F Interior_page-0011.jpg',
-  '/interior/1st-F-Interior/1st F Interior_page-0013.jpg',
-  '/interior/1st-F-Interior/1st F Interior_page-0014.jpg',
-  '/interior/1st-F-Interior/1st F Interior_page-0016.jpg',
-  '/interior/G-F-Interior/G F Interior_page-0001.jpg',
-  '/interior/G-F-Interior/G F Interior_page-0002.jpg',
-  '/interior/G-F-Interior/G F Interior_page-0004.jpg',
-  '/interior/G-F-Interior/G F Interior_page-0005.jpg',
-  '/interior/G-F-Interior/G F Interior_page-0007.jpg',
-  '/interior/G-F-Interior/G F Interior_page-0008.jpg',
-  '/interior/G-F-Interior/G F Interior_page-0009.jpg',
-  '/interior/G-F-Interior/G F Interior_page-0010.jpg',
-  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0002.jpg',
-  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0004.jpg',
-  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0005.jpg',
-  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0006.jpg',
-  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0007.jpg',
-  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0008.jpg',
-  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0001.jpg',
-  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0003.jpg',
-  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0006.jpg',
-  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0008.jpg',
-  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0010.jpg',
-  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0012.jpg'
+  '/interior/1st-F-Interior/1st F Interior_page-0001.webp',
+  '/interior/1st-F-Interior/1st F Interior_page-0002.webp',
+  '/interior/1st-F-Interior/1st F Interior_page-0003.webp',
+  '/interior/1st-F-Interior/1st F Interior_page-0007.webp',
+  '/interior/1st-F-Interior/1st F Interior_page-0010.webp',
+  '/interior/1st-F-Interior/1st F Interior_page-0011.webp',
+  '/interior/1st-F-Interior/1st F Interior_page-0013.webp',
+  '/interior/1st-F-Interior/1st F Interior_page-0014.webp',
+  '/interior/1st-F-Interior/1st F Interior_page-0016.webp',
+  '/interior/G-F-Interior/G F Interior_page-0001.webp',
+  '/interior/G-F-Interior/G F Interior_page-0002.webp',
+  '/interior/G-F-Interior/G F Interior_page-0004.webp',
+  '/interior/G-F-Interior/G F Interior_page-0005.webp',
+  '/interior/G-F-Interior/G F Interior_page-0007.webp',
+  '/interior/G-F-Interior/G F Interior_page-0008.webp',
+  '/interior/G-F-Interior/G F Interior_page-0009.webp',
+  '/interior/G-F-Interior/G F Interior_page-0010.webp',
+  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0002.webp',
+  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0004.webp',
+  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0005.webp',
+  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0006.webp',
+  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0007.webp',
+  '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0008.webp',
+  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0001.webp',
+  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0003.webp',
+  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0006.webp',
+  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0008.webp',
+  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0010.webp',
+  '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0012.webp'
 ];
 
 export default function Hero() {
   const [images, setImages] = useState<string[]>([
-    '/exterior/Enscape_2023-12-02-12-32-02.png',
-    '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0004.jpg',
-    '/exterior/Enscape_2023-12-02-12-37-39.png',
-    '/interior/G-F-Interior/G F Interior_page-0008.jpg',
-    '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0006.jpg'
+    '/exterior/Enscape_2023-12-02-12-32-02.webp',
+    '/interior/SUDIKSHA-INTERIOR/SUDIKSHA INTERIOR_page-0004.webp',
+    '/exterior/Enscape_2023-12-02-12-37-39.webp',
+    '/interior/G-F-Interior/G F Interior_page-0008.webp',
+    '/interior/KTICHEN-1_merged/KTICHEN 1_merged_page-0006.webp'
   ]);
 
   useEffect(() => {
@@ -94,19 +95,52 @@ export default function Hero() {
 
         <div className="hero-image-gallery slide-up delay-200">
           <div className="gallery-card card-1">
-            <img src={images[0]} alt="Residential Villa Construction" />
+            <Image 
+              src={images[0]} 
+              alt="Residential Villa Construction" 
+              fill
+              sizes="(max-width: 640px) 130px, 280px"
+              style={{ objectFit: 'cover' }}
+              preload={true}
+            />
           </div>
           <div className="gallery-card card-2">
-            <img src={images[1]} alt="Luxury Interior" />
+            <Image 
+              src={images[1]} 
+              alt="Luxury Interior" 
+              fill
+              sizes="(max-width: 640px) 130px, 280px"
+              style={{ objectFit: 'cover' }}
+              preload={true}
+            />
           </div>
           <div className="gallery-card card-3 center-card">
-            <img src={images[2]} alt="Commercial Building" />
+            <Image 
+              src={images[2]} 
+              alt="Commercial Building" 
+              fill
+              sizes="(max-width: 640px) 150px, 320px"
+              style={{ objectFit: 'cover' }}
+              preload={true}
+            />
           </div>
           <div className="gallery-card card-4">
-            <img src={images[3]} alt="Modern Construction Site" />
+            <Image 
+              src={images[3]} 
+              alt="Modern Construction Site" 
+              fill
+              sizes="(max-width: 640px) 130px, 280px"
+              style={{ objectFit: 'cover' }}
+            />
           </div>
           <div className="gallery-card card-5">
-            <img src={images[4]} alt="Architectural Design" />
+            <Image 
+              src={images[4]} 
+              alt="Architectural Design" 
+              fill
+              sizes="(max-width: 640px) 130px, 280px"
+              style={{ objectFit: 'cover' }}
+            />
           </div>
         </div>
       </div>

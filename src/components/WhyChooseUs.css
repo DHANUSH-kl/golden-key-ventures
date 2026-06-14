@@ -49,7 +49,7 @@
   font-size: clamp(2.5rem, 5.2vw, 4.5rem); /* Extra large numbers like in Image 2 */
   font-weight: 700;
   line-height: 1.1;
-  color: #ffb800; /* Warm gold/yellow from screenshot */
+  color: #8b5c1a; /* Warm premium gold/bronze with high contrast */
   letter-spacing: -0.04em;
   margin-bottom: 0.75rem;
 }

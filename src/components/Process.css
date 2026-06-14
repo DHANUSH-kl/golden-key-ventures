@@ -24,7 +24,7 @@
   border-radius: 50px;
   font-size: 0.72rem;
   font-weight: 600;
-  color: #718096;
+  color: #4a5568;
   margin-bottom: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -180,7 +180,7 @@
   border-radius: 12px;
   font-size: 0.7rem;
   font-family: monospace;
-  color: #718096;
+  color: #4a5568;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
@@ -317,7 +317,7 @@
 .step-card-phase {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #718096;
+  color: #4a5568;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 0.35rem;
@@ -325,7 +325,7 @@
 }
 
 .process-step-card.active .step-card-phase {
-  color: rgba(255, 255, 255, 0.85); /* High contrast white phase text */
+  color: rgba(26, 32, 44, 0.85); /* High contrast dark phase text on yellow */
 }
 
 .step-card-title {
@@ -336,7 +336,7 @@
 }
 
 .process-step-card.active .step-card-title {
-  color: #ffffff; /* High contrast white title text */
+  color: #1a202c; /* High contrast dark title text on yellow */
 }
 
 /* Card Description */
@@ -351,7 +351,7 @@
 }
 
 .process-step-card.active .step-card-desc {
-  color: rgba(255, 255, 255, 0.9); /* High contrast white description text */
+  color: #2d3748; /* High contrast dark description text on yellow */
 }
 
 /* Hidden by default on desktop */
@@ -381,7 +381,7 @@
 .deliverables-title {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #718096;
+  color: #4a5568;
   margin-bottom: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -389,7 +389,7 @@
 }
 
 .process-step-card.active .deliverables-title {
-  color: rgba(255, 255, 255, 0.85);
+  color: #4a5568;
 }
 
 .deliverables-grid {
@@ -412,33 +412,33 @@
 }
 
 .deliverable-tag:hover {
-  background: rgba(255, 184, 0, 0.05);
-  border-color: #ffb800;
-  color: #ffb800;
+  background: rgba(139, 92, 26, 0.05);
+  border-color: #8b5c1a;
+  color: #8b5c1a;
 }
 
 .process-step-card.active .deliverable-tag {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
-  color: #ffffff;
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #1a202c;
 }
 
 .process-step-card.active .deliverable-tag:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: #ffffff;
-  color: #ffffff;
+  background: rgba(0, 0, 0, 0.08);
+  border-color: #000000;
+  color: #000000;
 }
 
 .deliverable-check-icon {
   width: 12px;
   height: 12px;
-  color: #718096;
+  color: #4a5568;
   flex-shrink: 0;
   transition: color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .process-step-card.active .deliverable-check-icon {
-  color: #ffffff; /* White check mark inside yellow card */
+  color: #1a202c; /* Dark check mark inside yellow card */
 }
 
 /* ===== RESPONSIVE ===== */

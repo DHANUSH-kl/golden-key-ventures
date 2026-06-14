@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import './Process.css';
 
 const steps = [
@@ -9,7 +10,7 @@ const steps = [
     phase: 'PHASE 01',
     title: 'Consultation & Requirement Gathering',
     desc: 'We start by understanding your vision, budget, and timeline. Our process is collaborative, ensuring every detail is captured before any blueprints are drafted.',
-    image: '/how%20we%20work/phase%201.png',
+    image: '/how%20we%20work/phase%201.webp',
     deliverables: ['Client Vision Briefing', 'On-Site Feasibility Assessment', 'Initial Budget Projections', 'Project Timeline Roadmap']
   },
   {
@@ -17,7 +18,7 @@ const steps = [
     phase: 'PHASE 02',
     title: 'Planning & Design',
     desc: 'Our architecture team drafts detailed blueprints, structural plans, and realistic 3D models. We turn abstract ideas into fully realized spatial concepts.',
-    image: '/how%20we%20work/phase%202.png',
+    image: '/how%20we%20work/phase%202.webp',
     deliverables: ['Architectural 3D Visualizations', 'Detailed Structural Blueprints', 'Floor Plan Engineering', 'Regulatory Approvals']
   },
   {
@@ -25,7 +26,7 @@ const steps = [
     phase: 'PHASE 03',
     title: 'Material Selection & Approval',
     desc: 'Collaborative selection of premium materials, structural fixtures, and finishes. We balance high-end aesthetics with structural longevity and budget accuracy.',
-    image: '/how%20we%20work/phase%203.png',
+    image: '/how%20we%20work/phase%203.webp',
     deliverables: ['Custom Finishes Palette', 'Premium Material Sourcing', 'Subcontractor Procurement', 'Guaranteed Maximum Price (GMP)']
   },
   {
@@ -33,7 +34,7 @@ const steps = [
     phase: 'PHASE 04',
     title: 'Construction Execution',
     desc: 'Our skilled professionals, engineers, and project managers bring the approved design to life with strict adherence to safety, quality, and timelines.',
-    image: '/how%20we%20work/phase%204.png',
+    image: '/how%20we%20work/phase%204.webp',
     deliverables: ['General Civil Works', 'On-Site Safety Oversight', 'Weekly Progress Reporting', 'Structural Quality Audits']
   },
   {
@@ -41,7 +42,7 @@ const steps = [
     phase: 'PHASE 05',
     title: 'Quality Check & Delivery',
     desc: 'Rigorous engineering inspections and details checklist verification. We guarantee an immaculate handover, leaving you with a structure built to endure.',
-    image: '/how%20we%20work/phase%205.png',
+    image: '/how%20we%20work/phase%205.webp',
     deliverables: ['Detailed Snag List Clearance', 'Independent Inspections', 'Client Walkthrough Audit', 'Final Handover & Keys Ceremony']
   }
 ];
@@ -135,8 +136,14 @@ export default function Process() {
                   <div 
                     key={step.id} 
                     className={`visualizer-img-wrapper ${idx === activeIndex ? 'active' : ''}`}
-                    style={{ backgroundImage: `url("${step.image}")` }}
                   >
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      sizes="(max-width: 992px) 100vw, 50vw"
+                      style={{ objectFit: 'cover' }}
+                    />
                     <div className="visualizer-img-overlay"></div>
                   </div>
                 ))}
@@ -189,7 +196,14 @@ export default function Process() {
                 <p className="step-card-desc">{step.desc}</p>
 
                 {/* Mobile-only Image (Hidden on Desktop) */}
-                <div className="step-card-mobile-image" style={{ backgroundImage: `url("${step.image}")` }}>
+                <div className="step-card-mobile-image">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    sizes="(max-width: 992px) 100vw, 1px"
+                    style={{ objectFit: 'cover' }}
+                  />
                   <div className="visualizer-img-overlay"></div>
                 </div>
 

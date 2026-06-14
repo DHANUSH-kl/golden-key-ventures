@@ -51,7 +51,7 @@
 
 .social-links a:hover {
   background: #ffb800; /* Yellow background hover */
-  color: #ffffff; /* White social icon on hover */
+  color: #000000; /* Black social icon on hover for high contrast */
   border-color: #ffb800;
   transform: translateY(-3px);
 }
@@ -76,7 +76,7 @@
 }
 
 .footer-links a:hover {
-  color: #ffb800;
+  color: #8b5c1a; /* Improved high contrast warm gold */
   padding-left: 5px;
 }
 
